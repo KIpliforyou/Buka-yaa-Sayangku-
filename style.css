@@ -138,6 +138,10 @@ body::after {
         cinematicCard 1s ease;
 }
 
+.lock {
+    font-size: 100px;
+}
+
 .card h1 {
     margin:
         0 0 12px;
