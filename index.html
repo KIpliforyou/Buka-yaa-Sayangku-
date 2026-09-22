@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Something For You ❤️</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- =========================
+         PASSWORD PAGE
+    ========================== -->
+
+    <main class="page" id="passwordPage">
+
+        <div class="card">
+
+            <div class="lock">🔐</div>
+
+            <h1>Something For You ❤️</h1>
+
+            <p>
+                Ada sesuatu yang mau aku tunjukin ke kamu nih....
+            </p>
+
+            <input
+                type="text"
+                placeholder="Masukin nama kamu disini..."
+                id="password"
+            >
+
+            <p>
+                Pakai huruf Kapital ya Sayang😗
+            </p>
+
+            <button onclick="checkPassword()">
+                Submit
+            </button>
+
+            <p id="error"></p>
+
+        </div>
+
+    </main>
+
+
+    <!-- =========================
+         QUESTION PAGE
+    ========================== -->
+
+    <main class="page hidden" id="questionPage">
+
+        <div class="card">
+
+            <div class="question-icon">💫</div>
+
+            <h1>Sebelum masuk...</h1>
+
+            <p>
+                Jawab pertanyaan ini dulu ya...
+            </p>
+
+            <h2>Hari ini hari apa?</h2>
+
+            <div class="days">
+
+                <button onclick="checkDay('senin')">
+                    Senin
+                </button>
+
+                <button onclick="checkDay('selasa')">
+                    Selasa
+                </button>
+
+                <button onclick="checkDay('rabu')">
+                    Rabu
+                </button>
+
+                <button onclick="checkDay('kamis')">
+                    Kamis
+                </button>
+
+                <button onclick="checkDay('jumat')">
+                    Jumat
+                </button>
+
+                <button onclick="checkDay('sabtu')">
+                    Sabtu
+                </button>
+
+                <button onclick="checkDay('minggu')">
+                    Minggu
+                </button>
+
+                <button onclick="checkDay('hari spesial')">
+                    Hari Ulang Tahunku
+                </button>
+
+            </div>
+
+            <p id="dayMessage"></p>
+
+        </div>
+
+    </main>
+
+
+    <!-- =========================
+         BIRTHDAY PAGE
+    ========================== -->
+
+    <main class="page hidden" id="birthdayPage">
+
+        <div class="birthday-card">
+
+            <div class="cake">🎂</div>
+
+            <h1>
+                Selamat Ulang Tahun!
+            </h1>
+
+            <h2>
+                Untuk kamu yang sangat aku sayang... huhuhu🤗
+            </h2>
+
+            <p>
+                Hari ini kan hari ulang tahunmu!
+                dan ada yang lebih spesial untukmu...🥰
+            </p>
+
+            <button onclick="openGift()">
+                Lihat Hadiahmu
+            </button>
+
+        </div>
+
+    </main>
+
+
+    <!-- =========================
+         GIFT PAGE
+    ========================== -->
+
+    <main class="page hidden" id="giftPage">
+
+        <div class="gift-container">
+
+            <!-- TITLE -->
+
+            <div class="gift-title">
+
+                <span class="gift-icon">
+                    🎁
+                </span>
+
+                <h1>
+                    Untuk kamu sayang
+                </h1>
+
+                <p>
+                    Ini hadiah spesial dari aku untuk kamu...
+                    semoga kamu suka yaa...🤗
+                </p>
+
+            </div>
+
+
+            <!-- VIDEO -->
+
+            <div class="video-box">
+
+                <video
+                    id="birthdayVideo"
+                    controls
+                    playsinline
+                >
+
+                    <source
+                        src="./WhatsApp Video 2026-09-22 at 17.17.45.mp4"
+                        type="video/mp4"
+                    >
+
+                    Browser kamu tidak mendukung video.
+
+                </video>
+
+            </div>
+
+
+            <!-- MUSIC -->
+
+            <div class="music-box">
+
+                <div class="music-icon">
+                    🎵
+                </div>
+
+                <div class="music-text">
+
+                    <strong>
+                        Lagu Kita hehehe🥰
+                    </strong>
+
+                    <span>
+                        Dengerin lagu ini sambil liat album di bawah yaa sayang😉
+                    </span>
+
+                </div>
+
+                <audio
+                    id="birthdayMusic"
+                    controls
+                >
+
+                    <source
+                        src="./Virgoun - Surat Cinta Untuk Starla (Lirik Lagu).mp3"
+                        type="audio/mpeg"
+                    >
+
+                    Browser kamu tidak mendukung audio.
+
+                </audio>
+
+            </div>
+
+
+            <!-- =========================
+                 ALBUM CERITA
+            ========================== -->
+
+            <div class="story-album">
+
+                <div class="album-header">
+
+                    <span>📖</span>
+
+                    <h2>
+                        Ini perjalanan hubungan kita xixixi🤗❤️
+                    </h2>
+
+                    <p>
+                        Pesek gaboleh nangis kalo lihat ini🥰
+                    </p>
+
+                </div>
+
+
+                <!-- SLIDES -->
+
+                <div class="album-slider">
+
+
+                    <!-- FOTO 1 -->
+
+                    <div class="story-slide active">
+
+                        <img
+                            src="foto1.jpg"
+                            alt="Memory 1"
+                        >
+
+                        <div class="story-text">
+
+                            <span class="story-date">
+                                01 — Awal Cerita
+                            </span>
+
+                            <h3>
+                                Sarangan, 05 November 2023
+                            </h3>
+
+                            <p>
+                                Pertama kali main jauh, ijin ke bapak bikin badan
+                                panas dingin tapi untung aja di bolehin wkwkwk.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- FOTO 2 -->
+
+                    <div class="story-slide">
+
+                        <img
+                            src="foto2.jpg"
+                            alt="Memory 2"
+                        >
+
+                        <div class="story-text">
+
+                            <span class="story-date">
+                                02 — Sebuah Momen
+                            </span>
+
+                            <h3>
+                                PSC Madiun, 06 April 2024
+                            </h3>
+
+                            <p>
+                                Main ke PSC buat jalan-jalan sama beliin jajan kamu waktu itu.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- FOTO 3 -->
+
+                    <div class="story-slide">
+
+                        <img
+                            src="foto3.jpg"
+                            alt="Memory 3"
+                        >
+
+                        <div class="story-text">
+
+                            <span class="story-date">
+                                03 — Another Memory
+                            </span>
+
+                            <h3>
+                                Rumah kamu, 20 Juni 2024
+                            </h3>
+
+                            <p>
+                                Waktu gaboleh main jauh sama ketemu cuma sebulan sekali😢.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <!-- FOTO 4 -->
+
+                    <div class="story-slide">
+
+                        <img
+                            src="foto4.jpg"
+                            alt="Memory 3"
+                        >
+
+                        <div class="story-text">
+
+                            <span class="story-date">
+                                03 — Another Memory
+                            </span>
+
+                            <h3>
+                                Alun-alun Ngawi, 12 Mei 2024
+                            </h3>
+
+                            <p>
+                                Waktu aku habis kelulusan dan kamu ngasih kejutan aku🥰.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <!-- FOTO 5 -->
+
+                    <div class="story-slide">
+
+                        <img
+                            src="foto5.jpg"
+                            alt="Memory 3"
+                        >
+
+                        <div class="story-text">
+
+                            <span class="story-date">
+                                03 — Another Memory
+                            </span>
+
+                            <h3>
+                                Mbulak Karangpoh, 01 Juli 2024
+                            </h3>
+
+                            <p>
+                                Pas aku iseng-iseng nyuruh kamu buat jadi model motor kesayangan.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <!-- FOTO 6 -->
+
+                    <div class="story-slide">
+
+                        <img
+                            src="foto6.jpg"
+                            alt="Memory 3"
+                        >
+
+                        <div class="story-text">
+
+                            <span class="story-date">
+                                03 — Another Memory
+                            </span>
+
+                            <h3>
+                                Rumah aku, 07 September 2024
+                            </h3>
+
+                            <p>
+                                Kamu mau nganter aku potong rambut sebelum masuk LPK.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <!-- FOTO 7 -->
+
+                    <div class="story-slide">
+
+                        <img
+                            src="foto7.jpg"
+                            alt="Memory 3"
+                        >
+
+                        <div class="story-text">
+
+                            <span class="story-date">
+                                03 — Another Memory
+                            </span>
+
+                            <h3>
+                                Rumahmu, 12 Oktober 2024
+                            </h3>
+
+                            <p>
+                                Aku pas ngasih kamu surprise di sela pulang dari LPK buat ualng tahunmu🥰.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <!-- FOTO 8 -->
+
+                    <div class="story-slide">
+
+                        <img
+                            src="foto8.jpg"
+                            alt="Memory 3"
+                        >
+
+                        <div class="story-text">
+
+                            <span class="story-date">
+                                03 — Another Memory
+                            </span>
+
+                            <h3>
+                                Jln.Pahlawan Madiun, 30 November 2024
+                            </h3>
+
+                            <p>
+                                Jalan-jalan ke madiun after rain dengan udara sejuk dan city light nya😣.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <!-- FOTO 9 -->
+
+                    <div class="story-slide">
+
+                        <img
+                            src="foto9.jpg"
+                            alt="Memory 3"
+                        >
+
+                        <div class="story-text">
+
+                            <span class="story-date">
+                                03 — Another Memory
+                            </span>
+
+                            <h3>
+                                Plaza Madiun mall, 18 Januari 2025
+                            </h3>
+
+                            <p>
+                                Waktu itu kamu pengen takoyaki tapi yang jual gaada dan akhirnya beli pentol doang awkwkwk🤣.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <!-- FOTO 10 -->
+
+                    <div class="story-slide">
+
+                        <img
+                            src="foto10.jpg"
+                            alt="Memory 3"
+                        >
+
+                        <div class="story-text">
+
+                            <span class="story-date">
+                                
+                            </span>
+
+                            <h3>
+                                Deket Pasar sayur Caruban, 07 Februari 2025
+                            </h3>
+
+                            <p>
+                                Wkwk kencan tapi bareng orang rumah juga sambil nganter periksa si Dhifa. btw kok galak bgt ya akunya hahaha😋.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <!-- FOTO 11 -->
+
+                    <div class="story-slide">
+
+                        <img
+                            src="foto11.jpg"
+                            alt="Memory 3"
+                        >
+
+                        <div class="story-text">
+
+                            <span class="story-date">
+                                03 — Another Memory
+                            </span>
+
+                            <h3>
+                                Di jln.Sawo, 15 Maret 2025
+                            </h3>
+
+                            <p>
+                                Pas aku jemput kamu buat ke rumah karena ada slametan. berdua gaada yang bener ekspresinya wkwk😅.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <!-- FOTO 12 -->
+
+                    <div class="story-slide">
+
+                        <img
+                            src="foto12.jpg"
+                            alt="Memory 3"
+                        >
+
+                        <div class="story-text">
+
+                            <span class="story-date">
+                                03 — Another Memory
+                            </span>
+
+                            <h3>
+                                Chicken Wings Madiun, 29 Maret 2025
+                            </h3>
+
+                            <p>
+                                Ngantri titipan Mbak Endah nunggu berdua di depan soalnya di dalem kayak antartika🥶.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <!-- FOTO 13 -->
+
+                    <div class="story-slide">
+
+                        <img
+                            src="foto13.jpg"
+                            alt="Memory 3"
+                        >
+
+                        <div class="story-text">
+
+                            <span class="story-date">
+                                03 — Another Memory
+                            </span>
+
+                            <h3>
+                                Dirumah aku, 31 Maret 2025
+                            </h3>
+
+                            <p>
+                                Waktu lebaran kamu kerumahku trus mau foto malah bercanda hihihi🥰.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <!-- FOTO 14 -->
+
+                    <div class="story-slide">
+
+                        <img
+                            src="foto14.jpg"
+                            alt="Memory 3"
+                        >
+
+                        <div class="story-text">
+
+                            <span class="story-date">
+                                03 — Another Memory
+                            </span>
+
+                            <h3>
+                                Madiun, 26 April 2025
+                            </h3>
+
+                            <p>
+                                Lagi nunggu warung soto 10knya buka kala itu🤣. keren yaaa kita naik motor grand Bapak Samsul.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <!-- FOTO 15 -->
+
+                    <div class="story-slide">
+
+                        <img
+                            src="foto15.png"
+                            alt="Memory 3"
+                        >
+
+                        <div class="story-text">
+
+                            <span class="story-date">
+                                03 — Another Memory
+                            </span>
+
+                            <h3>
+                                Madiun, 12 Juli 2025
+                            </h3>
+
+                            <p>
+                                Jalan-jalan ke Madiun naik montor kesayangan dan helm favorit😆. sama review IP secondku.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <!-- FOTO 16 -->
+
+                    <div class="story-slide">
+
+                        <img
+                            src="foto16.png"
+                            alt="Memory 3"
+                        >
+
+                        <div class="story-text">
+
+                            <span class="story-date">
+                                03 — Another Memory
+                            </span>
+
+                            <h3>
+                                CFD Caruban, 20 Juli 2025
+                            </h3>
+
+                            <p>
+                                Kamu agak marah watu itu gara-gara gw agak krinan wkwkw🤣. tapi luluh soalnya mau jajan.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <!-- FOTO 17 -->
+
+                    <div class="story-slide">
+
+                        <img
+                            src="foto17.png"
+                            alt="Memory 3"
+                        >
+
+                        <div class="story-text">
+
+                            <span class="story-date">
+                                03 — Another Memory
+                            </span>
+
+                            <h3>
+                                Madiun Pandean, 22 Juli 2025
+                            </h3>
+
+                            <p>
+                                Waktu kamu nganter beli perlengkapan untuk di Jepang.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <!-- FOTO 18 -->
+
+                    <div class="story-slide">
+
+                        <img
+                            src="foto18.png"
+                            alt="Memory 3"
+                        >
+
+                        <div class="story-text">
+
+                            <span class="story-date">
+                                03 — Another Memory
+                            </span>
+
+                            <h3>
+                                Rumah kamu, 27 Juli 2025
+                            </h3>
+
+                            <p>
+                                senyum nya agak berat soalnya mau LDR 3thn wkwk😆.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <!-- FOTO 19 -->
+
+                    <div class="story-slide">
+
+                        <img
+                            src="foto19.png"
+                            alt="Memory 3"
+                        >
+
+                        <div class="story-text">
+
+                            <span class="story-date">
+                                03 — Another Memory
+                            </span>
+
+                            <h3>
+                                Stasiun Madiun, 29 Juli 2025
+                            </h3>
+
+                            <p>
+                                Fotbar terakhir sebelum LDR, dan sebelum kamu mewek hahaha🤣. btw sampe sekarang belum fotbar lagi yaa,,, <br>
+                                tiap hari cuma bisa vc, sabar yaaa sayang 2thn lagi kok bentar ituuumah😊.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                
+
+
+                <!-- ALBUM NAVIGATION -->
+
+                <div class="album-navigation">
+
+                    <button
+                        class="album-button"
+                        onclick="changeStory(-1)"
+                    >
+                        ←
+                    </button>
+
+                    <div class="album-dots">
+
+                        <span class="dot active"></span>
+
+                        <span class="dot"></span>
+
+                        <span class="dot"></span>
+
+                        <span class="dot"></span>
+                        
+                        <span class="dot"></span>
+                        
+                        <span class="dot"></span>
+                        
+                        <span class="dot"></span>
+                        
+                        <span class="dot"></span>
+                        
+                        <span class="dot"></span>
+                        
+                        <span class="dot"></span>
+                        
+                        <span class="dot"></span>
+                        
+                        <span class="dot"></span>
+                        
+                        <span class="dot"></span>
+                        
+                        <span class="dot"></span>
+                        
+                        <span class="dot"></span>
+                        
+                        <span class="dot"></span>
+                        
+                        <span class="dot"></span>
+                        
+                        <span class="dot"></span>
+                        
+                        <span class="dot"></span>
+                        
+                        <span class="dot"></span>
+                        
+                    </div>
+
+                    <button
+                        class="album-button"
+                        onclick="changeStory(1)"
+                    >
+                        →
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- FINAL MESSAGE -->
+
+            <div class="final-message">
+
+                <h2>
+                    ❤️
+                </h2>
+
+                <p>
+                    Semoga kamu suka dan senang dengan
+                    yang kubuat untukmu ini sayang🥰😘
+                </p>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

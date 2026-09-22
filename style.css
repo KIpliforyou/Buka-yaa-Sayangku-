@@ -1,0 +1,1124 @@
+/* ================================
+   RESET
+================================ */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    color: white;
+
+    overflow-x: hidden;
+
+    background:
+        radial-gradient(
+            circle at 20% 20%,
+            rgba(255, 70, 120, 0.20),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 80% 80%,
+            rgba(120, 70, 255, 0.18),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #07070c,
+            #160b18,
+            #09070d
+        );
+}
+
+
+/* ================================
+   BACKGROUND GLOW
+================================ */
+
+body::before,
+body::after {
+    content: "";
+
+    position: fixed;
+
+    width: 320px;
+    height: 320px;
+
+    border-radius: 50%;
+
+    filter: blur(110px);
+
+    opacity: 0.25;
+
+    pointer-events: none;
+
+    z-index: -1;
+}
+
+body::before {
+    background: #ff477e;
+
+    top: -120px;
+    left: -120px;
+
+    animation:
+        glowMove 8s ease-in-out infinite alternate;
+}
+
+body::after {
+    background: #7447ff;
+
+    right: -120px;
+    bottom: -120px;
+
+    animation:
+        glowMove2 10s ease-in-out infinite alternate;
+}
+
+
+/* ================================
+   PAGE
+================================ */
+
+.page {
+    min-height: 100vh;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    padding: 25px;
+
+    animation:
+        pageIn 0.8s ease;
+}
+
+.hidden {
+    display: none !important;
+}
+
+
+/* ================================
+   CARD
+================================ */
+
+.card {
+    width: 100%;
+    max-width: 440px;
+
+    padding: 45px 32px;
+
+    text-align: center;
+
+    background:
+        rgba(255, 255, 255, 0.07);
+
+    border:
+        1px solid rgba(255, 255, 255, 0.14);
+
+    border-radius: 28px;
+
+    backdrop-filter: blur(20px);
+
+    box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.55),
+        inset 0 1px 0 rgba(255, 255, 255, 0.10);
+
+    animation:
+        cinematicCard 1s ease;
+}
+
+.card h1 {
+    margin:
+        0 0 12px;
+
+    font-size: 30px;
+
+    letter-spacing: -0.5px;
+}
+
+.card h2 {
+    margin-top: 25px;
+
+    font-size: 22px;
+}
+
+.card p {
+    color: #d4d4d4;
+
+    line-height: 1.7;
+}
+
+
+/* ================================
+   ICON
+================================ */
+
+.icon {
+    font-size: 60px;
+
+    margin-bottom: 20px;
+
+    filter:
+        drop-shadow(
+            0 0 18px rgba(255, 100, 150, 0.55)
+        );
+
+    animation:
+        floating 3s ease-in-out infinite;
+}
+
+
+/* ================================
+   INPUT
+================================ */
+
+input {
+    width: 100%;
+
+    padding: 16px;
+
+    margin-top: 15px;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.15);
+
+    border-radius: 14px;
+
+    outline: none;
+
+    background:
+        rgba(255, 255, 255, 0.08);
+
+    color: white;
+
+    font-size: 16px;
+
+    text-align: center;
+
+    transition: 0.3s;
+}
+
+input::placeholder {
+    color: #999;
+}
+
+input:focus {
+    border-color: #ff6f91;
+
+    box-shadow:
+        0 0 0 3px rgba(255, 111, 145, 0.10),
+        0 0 25px rgba(255, 111, 145, 0.20);
+}
+
+.small-text {
+    font-size: 13px;
+    color: #aaa !important;
+}
+
+
+/* ================================
+   BUTTON
+================================ */
+
+button {
+    width: 100%;
+
+    padding: 16px;
+
+    margin-top: 15px;
+
+    border: none;
+
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff527d,
+            #ff7aa0
+        );
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 10px 30px rgba(255, 82, 125, 0.25);
+
+    transition:
+        transform 0.3s,
+        box-shadow 0.3s;
+}
+
+button:hover {
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        0 15px 35px rgba(255, 82, 125, 0.40);
+}
+
+button:active {
+    transform:
+        scale(0.97);
+}
+
+
+/* ================================
+   DAY BUTTONS
+================================ */
+
+.days {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 10px;
+
+    margin-top: 20px;
+}
+
+.days button {
+    margin-top: 0;
+
+    background:
+        rgba(255, 255, 255, 0.07);
+
+    border:
+        1px solid rgba(255, 255, 255, 0.12);
+
+    box-shadow: none;
+}
+
+.days button:hover {
+    background:
+        rgba(255, 111, 145, 0.20);
+}
+
+
+/* ================================
+   MESSAGE
+================================ */
+
+#error,
+#dayMessage {
+    min-height: 25px;
+
+    margin-top: 15px;
+
+    color: #ff9db5;
+}
+
+
+/* ================================
+   BIRTHDAY PAGE
+================================ */
+
+.birthday-card {
+    width: 100%;
+    max-width: 650px;
+
+    padding: 50px 35px;
+
+    text-align: center;
+
+    position: relative;
+
+    overflow: hidden;
+
+    background:
+        rgba(255, 255, 255, 0.07);
+
+    border:
+        1px solid rgba(255, 255, 255, 0.15);
+
+    border-radius: 30px;
+
+    backdrop-filter: blur(20px);
+
+    box-shadow:
+        0 30px 90px rgba(0, 0, 0, 0.55);
+
+    animation:
+        cinematicCard 1s ease;
+}
+
+.birthday-card::before {
+    content: "";
+
+    position: absolute;
+
+    width: 250px;
+    height: 250px;
+
+    background:
+        rgba(255, 80, 130, 0.18);
+
+    filter: blur(80px);
+
+    top: -100px;
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+}
+
+.cake {
+    position: relative;
+
+    font-size: 90px;
+
+    margin-bottom: 15px;
+
+    filter:
+        drop-shadow(
+            0 0 25px rgba(255, 100, 150, 0.60)
+        );
+
+    animation:
+        cakeFloat 3s ease-in-out infinite;
+}
+
+.birthday-card h1,
+.birthday-card h2,
+.birthday-card p,
+.birthday-card button {
+    position: relative;
+}
+
+
+/* ================================
+   GIFT PAGE
+================================ */
+
+#giftPage {
+    align-items: flex-start;
+
+    padding-top: 60px;
+    padding-bottom: 80px;
+}
+
+.gift-container {
+    width: 100%;
+    max-width: 800px;
+
+    animation:
+        giftReveal 1.2s ease;
+}
+
+
+/* ================================
+   GIFT TITLE
+================================ */
+
+.gift-title {
+    text-align: center;
+
+    margin-bottom: 35px;
+}
+
+.gift-icon {
+    display: block;
+
+    font-size: 65px;
+
+    filter:
+        drop-shadow(
+            0 0 20px rgba(255, 100, 150, 0.55)
+        );
+
+    animation:
+        floating 3s ease-in-out infinite;
+}
+
+.gift-title h1 {
+    margin:
+        15px 0 8px;
+
+    font-size: 38px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ffffff,
+            #ffb5c7,
+            #ffffff
+        );
+
+    background-size: 200% auto;
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    animation:
+        shineText 4s linear infinite;
+}
+
+.gift-title p {
+    color: #aaa;
+}
+
+
+/* ================================
+   VIDEO
+================================ */
+
+.video-box {
+    position: relative;
+
+    width: 100%;
+
+    padding: 8px;
+
+    background:
+        rgba(255, 255, 255, 0.05);
+
+    border:
+        1px solid rgba(255, 255, 255, 0.15);
+
+    border-radius: 24px;
+
+    box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.60),
+        0 0 50px rgba(255, 80, 130, 0.08);
+
+    overflow: hidden;
+}
+
+.video-box video {
+    width: 100%;
+
+    display: block;
+
+    border-radius: 18px;
+
+    background: black;
+}
+
+
+/* ================================
+   MUSIC
+================================ */
+
+.music-box {
+    margin-top: 28px;
+
+    padding: 22px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    background:
+        rgba(255, 255, 255, 0.06);
+
+    border:
+        1px solid rgba(255, 255, 255, 0.12);
+
+    border-radius: 20px;
+
+    backdrop-filter: blur(15px);
+
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.35);
+}
+
+.music-icon {
+    font-size: 38px;
+
+    animation:
+        musicPulse 2s ease-in-out infinite;
+}
+
+.music-text {
+    flex: 1;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+}
+
+.music-text strong {
+    font-size: 17px;
+}
+
+.music-text span {
+    font-size: 12px;
+
+    color: #aaa;
+}
+
+.music-box audio {
+    width: 230px;
+}
+
+
+/* ================================
+   ALBUM
+================================ */
+
+.album {
+    margin-top: 60px;
+
+    width: 100%;
+}
+
+
+/* ALBUM HEADER */
+
+.album-heading {
+    text-align: center;
+
+    margin-bottom: 25px;
+}
+
+.album-heading span {
+    display: block;
+
+    font-size: 45px;
+
+    margin-bottom: 5px;
+
+    filter:
+        drop-shadow(
+            0 0 18px rgba(255, 100, 150, 0.5)
+        );
+}
+
+.album-heading h2 {
+    margin:
+        0 0 8px;
+
+    font-size: 32px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ffffff,
+            #ffb6c9,
+            #ffffff
+        );
+
+    background-size: 200% auto;
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    animation:
+        shineText 4s linear infinite;
+}
+
+.album-heading p {
+    margin: 0;
+
+    color: #999;
+
+    font-size: 14px;
+}
+
+
+/* ================================
+   SLIDER
+================================ */
+
+.album-slider {
+    width: 100%;
+
+    overflow: hidden;
+
+    border-radius: 25px;
+
+    background:
+        rgba(255, 255, 255, 0.05);
+
+    border:
+        1px solid rgba(255, 255, 255, 0.12);
+
+    box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.55);
+
+    backdrop-filter: blur(15px);
+}
+
+
+/* ================================
+   SLIDE
+================================ */
+
+.story-slide {
+    display: none;
+
+    animation:
+        storyFade 0.7s ease;
+}
+
+.story-slide.active {
+    display: block;
+}
+
+
+/* ================================
+   PHOTO
+================================ */
+
+.story-slide img {
+    width: 100%;
+
+    height: 480px;
+
+    display: block;
+
+    object-fit: cover;
+
+    background: #050505;
+}
+
+
+/* ================================
+   STORY
+================================ */
+
+.story-text {
+    padding:
+        28px 30px 32px;
+}
+
+.story-date {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #ff8eaa;
+
+    font-size: 12px;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+}
+
+.story-text h3 {
+    margin:
+        0 0 10px;
+
+    font-size: 24px;
+}
+
+.story-text p {
+    margin: 0;
+
+    color: #c7c7c7;
+
+    font-size: 15px;
+
+    line-height: 1.8;
+}
+
+
+/* ================================
+   ALBUM NAVIGATION
+================================ */
+
+.album-navigation {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 25px;
+
+    margin-top: 20px;
+}
+
+.album-button {
+    width: 48px !important;
+
+    height: 48px;
+
+    padding: 0 !important;
+
+    margin: 0 !important;
+
+    border-radius: 50% !important;
+
+    background:
+        rgba(255, 255, 255, 0.08) !important;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.15);
+
+    box-shadow: none !important;
+
+    font-size: 20px;
+}
+
+.album-button:hover {
+    background:
+        rgba(255, 111, 145, 0.20) !important;
+
+    transform:
+        scale(1.08);
+}
+
+
+/* ================================
+   DOTS
+================================ */
+
+.album-dots {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+}
+
+.dot {
+    width: 7px;
+
+    height: 7px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255, 255, 255, 0.25);
+
+    transition:
+        0.3s;
+}
+
+.dot.active {
+    width: 25px;
+
+    border-radius: 10px;
+
+    background:
+        #ff7898;
+
+    box-shadow:
+        0 0 12px rgba(255, 120, 152, 0.50);
+}
+
+
+/* ================================
+   FINAL MESSAGE
+================================ */
+
+.final-message {
+    margin-top: 50px;
+
+    padding: 35px;
+
+    text-align: center;
+
+    background:
+        rgba(255, 255, 255, 0.04);
+
+    border:
+        1px solid rgba(255, 255, 255, 0.08);
+
+    border-radius: 22px;
+
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.25);
+}
+
+.final-message h2 {
+    margin: 0;
+
+    font-size: 40px;
+
+    animation:
+        heartGlow 2s ease-in-out infinite;
+}
+
+.final-message p {
+    color: #ccc;
+}
+
+
+/* ================================
+   ANIMATIONS
+================================ */
+
+@keyframes pageIn {
+
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+@keyframes cinematicCard {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(30px)
+            scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+
+@keyframes giftReveal {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(40px)
+            scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+
+@keyframes floating {
+
+    0%,
+    100% {
+        transform:
+            translateY(0);
+    }
+
+    50% {
+        transform:
+            translateY(-10px);
+    }
+}
+
+
+@keyframes cakeFloat {
+
+    0%,
+    100% {
+        transform:
+            translateY(0)
+            rotate(-2deg);
+    }
+
+    50% {
+        transform:
+            translateY(-12px)
+            rotate(2deg);
+    }
+}
+
+
+@keyframes musicPulse {
+
+    0%,
+    100% {
+        transform:
+            scale(1);
+    }
+
+    50% {
+        transform:
+            scale(1.15);
+    }
+}
+
+
+@keyframes heartGlow {
+
+    0%,
+    100% {
+        transform:
+            scale(1);
+
+        filter:
+            drop-shadow(
+                0 0 5px
+                rgba(255, 100, 150, 0.2)
+            );
+    }
+
+    50% {
+        transform:
+            scale(1.12);
+
+        filter:
+            drop-shadow(
+                0 0 20px
+                rgba(255, 100, 150, 0.6)
+            );
+    }
+}
+
+
+@keyframes glowMove {
+
+    from {
+        transform:
+            translate(0, 0);
+    }
+
+    to {
+        transform:
+            translate(120px, 80px);
+    }
+}
+
+
+@keyframes glowMove2 {
+
+    from {
+        transform:
+            translate(0, 0);
+    }
+
+    to {
+        transform:
+            translate(-100px, -80px);
+    }
+}
+
+
+@keyframes shineText {
+
+    0% {
+        background-position:
+            0% center;
+    }
+
+    100% {
+        background-position:
+            200% center;
+    }
+}
+
+
+@keyframes storyFade {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateX(30px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateX(0);
+    }
+}
+
+
+/* ================================
+   MOBILE
+================================ */
+
+@media (max-width: 600px) {
+
+    .page {
+        padding: 18px;
+    }
+
+    .card {
+        padding:
+            35px 22px;
+    }
+
+    .card h1 {
+        font-size: 26px;
+    }
+
+    .birthday-card {
+        padding:
+            40px 22px;
+    }
+
+    .birthday-card h1 {
+        font-size: 28px;
+    }
+
+    .birthday-card h2 {
+        font-size: 19px;
+    }
+
+    .gift-title h1 {
+        font-size: 30px;
+    }
+
+    .music-box {
+        flex-wrap: wrap;
+    }
+
+    .music-text {
+        min-width: 150px;
+    }
+
+    .music-box audio {
+        width: 100%;
+    }
+
+    .days {
+        grid-template-columns: 1fr;
+    }
+
+    .story-slide img {
+        height: 360px;
+    }
+
+    .story-text {
+        padding:
+            22px;
+    }
+
+    .story-text h3 {
+        font-size: 21px;
+    }
+
+    .story-text p {
+        font-size: 14px;
+    }
+
+    .album-heading h2 {
+        font-size: 28px;
+    }
+
+}
