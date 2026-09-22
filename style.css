@@ -14,7 +14,7 @@ body {
     margin: 0;
     min-height: 100vh;
 
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Quicksand', sans-serif;
 
     color: white;
 
@@ -37,6 +37,11 @@ body {
             #160b18,
             #09070d
         );
+}
+
+h1, h2, .title {
+
+    font-family: 'Dancing Script', cursive;
 }
 
 
@@ -140,6 +145,9 @@ body::after {
 
 .lock {
     font-size: 100px;
+
+    animation:
+        cakeFloat 3s ease-in-out infinite;
 }
 
 .card h1 {
@@ -149,6 +157,9 @@ body::after {
     font-size: 30px;
 
     letter-spacing: -0.5px;
+
+    animation:
+        textGlow 2.5s ease-in-out infinite;
 }
 
 .card h2 {
@@ -982,6 +993,32 @@ button:active {
     50% {
         transform:
             scale(1.12);
+
+        filter:
+            drop-shadow(
+                0 0 20px
+                rgba(255, 100, 150, 0.6)
+            );
+    }
+}
+
+@keyframes textGlow {
+
+    0%,
+    100% {
+        transform:
+            scale(1);
+
+        filter:
+            drop-shadow(
+                0 0 5px
+                rgba(255, 100, 150, 0.2)
+            );
+    }
+
+    50% {
+        transform:
+            scale(1.05);
 
         filter:
             drop-shadow(

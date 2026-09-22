@@ -39,7 +39,9 @@ function checkDay(day) {
         document.getElementById("dayMessage");
 
     const correctDay =
-        "senin";
+        "sabtu"; 
+
+    const hariUltah = "hari spesial"
 
 
     if (day === correctDay) {
@@ -58,13 +60,18 @@ function checkDay(day) {
                 .getElementById("birthdayPage")
                 .classList.remove("hidden");
 
-        }, 1000);
+        }, 3000);
 
 
-    } else {
+    } else if (day === hariUltah) {
 
         message.innerText =
             "Emang oon ya kamu hmmm😣";
+
+    } else {
+        
+        message.innerText =
+            "BENERAN NI BOCAH EMG OON!!!"
     }
 }
 
