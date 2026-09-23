@@ -66,7 +66,7 @@ function checkDay(day) {
     } else if (day === hariUltah) {
 
         message.innerText =
-            "Emang oon ya kamu hmmm😣";
+            "DIH GR BANGET SIH LU WOH!!!";
 
     } else {
         

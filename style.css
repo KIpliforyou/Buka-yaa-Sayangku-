@@ -23,7 +23,7 @@ body {
     background:
         radial-gradient(
             circle at 20% 20%,
-            rgba(255, 70, 120, 0.20),
+            rgba(221, 70, 255, 0.2),
             transparent 30%
         ),
         radial-gradient(
@@ -802,11 +802,12 @@ button:active {
 ================================ */
 
 .album-dots {
+
     display: flex;
 
     align-items: center;
 
-    gap: 8px;
+    gap: 4px;
 }
 
 .dot {
