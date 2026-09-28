@@ -142,3 +142,25 @@ function changeStory(direction) {
     dots[currentStory]
         .classList.add("active");
 }
+
+/* =========================
+   FLOATING HEARTS
+========================= */
+
+document.addEventListener("DOMContentLoaded", () =>{
+
+    const hearts = document.querySelectorAll(".floating-hearts span");
+    
+    hearts.forEach(heart => {
+        const randomLeft = Math.random() * 100;
+        const randomSize = 15 + Math.random() * 40;
+        const randomDuration = 6 + Math.random() * 8;
+        const randomDelay = Math.random() * 6;
+    
+        heart.style.left = randomLeft + "%";
+        heart.style.fontSize = randomSize + "px";
+        heart.style.animationDuration = randomDuration + "s";
+        heart.style.animationDelay = randomDelay + "s";
+    
+    });
+})
