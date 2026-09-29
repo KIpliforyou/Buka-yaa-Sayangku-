@@ -394,7 +394,7 @@ button:active {
         translateX(-50%);
 }
 
-.cake {
+.birthday-foto {
     position: relative;
 
     font-size: 90px;
@@ -415,6 +415,14 @@ button:active {
 .birthday-card p,
 .birthday-card button {
     position: relative;
+}
+
+.birthday-foto img {
+    width: 350px;
+
+    height: 350px;
+
+    object-fit: contain;
 }
 
 
@@ -479,6 +487,7 @@ button:active {
     background-size: 200% auto;
 
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 
     animation:
@@ -637,6 +646,7 @@ button:active {
     background-size: 200% auto;
 
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 
     animation:
@@ -747,6 +757,14 @@ button:active {
     font-size: 15px;
 
     line-height: 1.8;
+}
+
+.album-slider img {
+    transition: transform 0.3s ease;
+}
+
+.album-slider img.zoom {
+    transform: scale(1.3);
 }
 
 

@@ -164,3 +164,13 @@ document.addEventListener("DOMContentLoaded", () =>{
     
     });
 })
+
+// Efek zoom foto
+
+const storyPhotos = document.querySelectorAll(".album-slider img");
+
+storyPhotos.forEach(function(photo) {
+    photo.addEventListener("click", function() {
+        photo.classList.toggle("zoom");
+    });
+});
