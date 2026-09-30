@@ -84,8 +84,36 @@ function openGift() {
         .classList.add("hidden");
 
     document
-        .getElementById("giftPage")
+        .getElementById("countdownPage")
         .classList.remove("hidden");
+
+    let count = 10;
+
+    const countdown =
+    document.getElementById("countdown");
+
+    countdown.innerText = count;
+
+    const timer = setInterval(function() {
+        count--;
+        countdown.innerText = count;
+        if (count <= 0) {
+            clearInterval(timer);
+
+            document
+            .getElementById("countdownPage")
+            .classList.add("hidden");
+
+            document
+            .getElementById("giftPage")
+            .classList.remove("hidden")
+
+            return;
+        }
+
+        countdown.innerText = count;
+
+    }, 1000);
 }
 
 
