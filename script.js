@@ -116,6 +116,15 @@ function openGift() {
     }, 1000);
 }
 
+/* =========================
+   DAFTAR HADIAH
+========================= */
+
+function daftarHadiah() {
+
+    alert("Daftar hadiah:\n1. Kado spesial dari aku\n2. Ucapan selamat ulang tahun dari aku\n3. Momen-momen indah kita bersama\n4. Dan masih banyak lagi kejutan lainnya! 🎁🎉");
+
+}
 
 
 /* =========================
@@ -195,10 +204,20 @@ document.addEventListener("DOMContentLoaded", () =>{
 
 // Efek zoom foto
 
-const storyPhotos = document.querySelectorAll(".album-slider img");
+const storyPhotos = document.querySelectorAll(".story-slide img");
+
+const lightbox = document.getElementById("lightbox");
+
+const lightboxImage = document.getElementById("lightboxImage");
+
 
 storyPhotos.forEach(function(photo) {
     photo.addEventListener("click", function() {
-        photo.classList.toggle("zoom");
+        lightboxImage.src = photo.src;
+        lightbox.classList.add("active");
     });
+});
+
+lightbox.addEventListener("click", function() {
+    lightbox.classList.remove("active");
 });

@@ -481,6 +481,24 @@ button:active {
         floating 3s ease-in-out infinite;
 }
 
+.hadiah {
+    background: none;
+    border: none;
+    cursor: pointer;
+    box-shadow: none;
+    outline: none;
+}
+
+.hadiah:hover,
+.hadiah:focus,
+.hadiah:active {
+    background: none;
+    border: none;
+    box-shadow: none;
+    outline: none;
+    transform: none;
+}
+
 .gift-title h1 {
     margin:
         15px 0 8px;
@@ -678,9 +696,14 @@ button:active {
 ================================ */
 
 .album-slider {
+
+    position: relative;
+
+    z-index: 1;
+
     width: 100%;
 
-    overflow: hidden;
+    overflow: visible;
 
     border-radius: 25px;
 
@@ -771,11 +794,32 @@ button:active {
 }
 
 .album-slider img {
-    transition: transform 0.3s ease;
+    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.45s ease;
+    cursor: zoom-in;
 }
 
 .album-slider img.zoom {
-    transform: scale(1.3);
+    transform: scale(1.25) translateY(-15px);
+    cursor: zoom-out;
+    position: relative;
+    z-index: 100;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
+}
+
+.album-slider:has(img.zoom) {
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 15px;
+}
+
+.album-slider:has(img.zoom)::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: 15px;
+    pointer-events: none;
+    z-index: 50;
 }
 
 
@@ -1254,4 +1298,67 @@ button:active {
         transform: translateY(-110vh) scale(1.2);
         opacity: 0;
     }
+}
+
+
+/* ================================
+   MOBILE LIGHTBOX
+================================ */
+
+.lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition: opacity 0.35s ease;
+    z-index: 9999;
+}
+
+.lightbox.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.lightbox img {
+    max-width: 90%;
+    max-height: 85%;
+
+    border-radius: 12px;
+    border: 3px solid rgba(255, 255, 255, 0.25);
+    box-shadow:
+        0 0 10px rgba(255, 255, 255, 0.4),
+        0 0 25px rgba(255, 255, 255, 0.25);
+
+    animation: sparkleBorder 2s ease-in-out infinite;
+
+    object-fit: contain;
+    transform: scale(0.85);
+    transition: transform 0.35s ease;
+
+
+}
+
+@keyframes sparkleBorder {
+    0%, 100% {
+        box-shadow:
+        0 0 10px rgba(255, 255, 255, 0.4),
+        0 0 25px rgba(255, 255, 255, 0.25);
+    }
+    50% {
+        box-shadow:
+        0 0 20px rgba(255, 255, 255, 0.9),
+        0 0 40px rgba(255, 255, 255, 0.7),
+        0 0 60px rgba(255, 255, 255, 0.2);
+    }
+}
+
+.lightbox.active img {
+    transform: scale(1);
 }
