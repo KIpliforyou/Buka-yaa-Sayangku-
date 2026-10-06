@@ -1362,3 +1362,98 @@ button:active {
 .lightbox.active img {
     transform: scale(1);
 }
+
+/* galaxy */
+
+/* =========================
+   GALAXY 3D
+========================= */
+
+#galaxyPage {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background: #000;
+    z-index: 9999;
+}
+
+#galaxySpace {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+#galaxySpace canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    touch-action: none;
+}
+
+/* popup pesan */
+
+.love-message {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    width: min(80%, 420px);
+    padding: 30px;
+
+    transform: translate(-50%, -50%) scale(.7);
+
+    background: rgba(20, 5, 30, .92);
+    border: 1px solid rgba(255, 180, 235, .8);
+    border-radius: 25px;
+
+    box-shadow:
+        0 0 30px rgba(255, 100, 210, .6),
+        0 0 100px rgba(255, 40, 190, .3);
+
+    backdrop-filter: blur(15px);
+
+    color: white;
+    text-align: center;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition:
+        opacity .35s ease,
+        transform .35s ease;
+
+    z-index: 10000;
+}
+
+.love-message.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+#messageText {
+    font-family: "Dancing Script", cursive;
+    font-size: 26px;
+    line-height: 1.5;
+    margin: 10px;
+}
+
+.close-message {
+    position: absolute;
+    right: 12px;
+    top: 8px;
+
+    background: none !important;
+    border: none !important;
+
+    color: white !important;
+    font-size: 28px;
+    cursor: pointer;
+
+    padding: 0 !important;
+}
