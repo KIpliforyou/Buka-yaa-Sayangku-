@@ -703,7 +703,7 @@ function createCenterPhoto() {
         new THREE.TextureLoader();
 
     loader.load(
-        "birthday-foto.png",
+        "imutku.jpg",
         function(texture) {
 
             texture.colorSpace =
