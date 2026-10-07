@@ -10,10 +10,10 @@ function checkPassword() {
 
     const password = passwordInput.value.trim();
 
-    const correctPassword = "";
+    const correctPassword = "12/12/2023";
 
     if (password === correctPassword) {
-        error.innerText = "12/12/2023";
+        error.innerText = "";
 
         document.getElementById("passwordPage")?.classList.add("hidden");
         document.getElementById("questionPage")?.classList.remove("hidden");
