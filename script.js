@@ -1,295 +1,246 @@
+/* =========================================================
+   PASSWORD PAGE
+========================================================= */
+
 function checkPassword() {
+    const passwordInput = document.getElementById("password");
+    const error = document.getElementById("error");
 
-    const password =
-        document.getElementById("password").value;
+    if (!passwordInput || !error) return;
 
-    const error =
-        document.getElementById("error");
+    const password = passwordInput.value.trim();
 
-    const correctPassword =
-        "0";
-
+    const correctPassword = "";
 
     if (password === correctPassword) {
-
         error.innerText = "";
 
-        document
-            .getElementById("passwordPage")
-            .classList.add("hidden");
-
-        document
-            .getElementById("questionPage")
-            .classList.remove("hidden");
-
+        document.getElementById("passwordPage")?.classList.add("hidden");
+        document.getElementById("questionPage")?.classList.remove("hidden");
     } else {
-
         error.style.color = "#ffb8b8";
-
         error.innerText =
-            "Passwordnya salah, coba lagi yaa...😢";
+            "Coba lagi ya sayang, kayaknya ada yang salah kamu ngetiknya 😅";
     }
 }
 
 
+/* =========================================================
+   QUESTION PAGE
+========================================================= */
 
 function checkDay(day) {
+    const message = document.getElementById("dayMessage");
 
-    const message =
-        document.getElementById("dayMessage");
+    if (!message) return;
 
-    const correctDay =
-        "sabtu";
-
-    const hariUltah =
-        "hari spesial";
-
+    const correctDay = "sabtu";
+    const hariUltah = "hari spesial";
 
     if (day === correctDay) {
-
         message.innerText =
-            "Benar! Kamu hebat banget, aku bangga sama kamu. 😍";
-
+            "Yahaha bisa ternyata kamu sayang😍";
 
         setTimeout(() => {
-
-            document
-                .getElementById("questionPage")
-                .classList.add("hidden");
-
-            document
-                .getElementById("birthdayPage")
-                .classList.remove("hidden");
-
+            document.getElementById("questionPage")?.classList.add("hidden");
+            document.getElementById("birthdayPage")?.classList.remove("hidden");
         }, 3000);
 
-
     } else if (day === hariUltah) {
-
         message.innerText =
-            "DIH GR BANGET SIH LU WOH!!!";
+            "Iya sayang aku juga tau kalo hari ini kamu Ulang tahun😒";
 
     } else {
-
         message.innerText =
-            "BENERAN NI BOCAH EMG OON!!!";
+            "Coba cek HP deh ini hari apa,,,";
     }
 }
 
 
+/* =========================================================
+   GIFT / COUNTDOWN
+========================================================= */
 
 function openGift() {
+    document.getElementById("birthdayPage")?.classList.add("hidden");
+    document.getElementById("countdownPage")?.classList.remove("hidden");
 
-    document
-        .getElementById("birthdayPage")
-        .classList.add("hidden");
+    let count = 3;
+    const countdown = document.getElementById("countdown");
 
-    document
-        .getElementById("countdownPage")
-        .classList.remove("hidden");
-
-    let count = 10;
-
-    const countdown =
-        document.getElementById("countdown");
+    if (!countdown) return;
 
     countdown.innerText = count;
 
-
-    const timer = setInterval(function() {
-
+    const timer = setInterval(() => {
         count--;
 
         countdown.innerText = count;
 
-
         if (count <= 0) {
-
             clearInterval(timer);
 
-            document
-                .getElementById("countdownPage")
-                .classList.add("hidden");
-
-            document
-                .getElementById("giftPage")
-                .classList.remove("hidden");
-
-            return;
+            document.getElementById("countdownPage")?.classList.add("hidden");
+            document.getElementById("giftPage")?.classList.remove("hidden");
         }
-
     }, 1000);
 }
 
 
-
-/* =========================
-   DAFTAR HADIAH
-========================= */
+/* =========================================================
+   GIFT MESSAGE
+========================================================= */
 
 function daftarHadiah() {
-
     alert(
-        "Daftar hadiah:\n" +
-        "1. Kado spesial dari aku\n" +
-        "2. Ucapan selamat ulang tahun dari aku\n" +
-        "3. Momen-momen indah kita bersama\n" +
-        "4. Dan masih banyak lagi kejutan lainnya! 🎁🎉"
+        "Semoga kamu suka yaaa kado dari aku, Kamu suka kan warna Bunganya?, itu kalung buat kamu biar kamu bisa pake terus, sama ngejaga kalung itu kayak kita ngejaga hubungan meski LDR lintas Negoro Angin ini Ida sayang"
     );
-
 }
 
 
-
-/* =========================
-   ALBUM SLIDER
-========================= */
+/* =========================================================
+   STORY ALBUM
+========================================================= */
 
 let currentStory = 0;
 
-
 function changeStory(direction) {
+    const slides = document.querySelectorAll(".story-slide");
+    const dots = document.querySelectorAll(".dot");
 
-    const slides =
-        document.querySelectorAll(".story-slide");
+    if (!slides.length) return;
 
-    const dots =
-        document.querySelectorAll(".dot");
-
-
-    if (slides.length === 0) {
-        return;
-    }
-
-
-    slides[currentStory]
-        .classList.remove("active");
-
-    if (dots[currentStory]) {
-        dots[currentStory]
-            .classList.remove("active");
-    }
-
+    slides[currentStory]?.classList.remove("active");
+    dots[currentStory]?.classList.remove("active");
 
     currentStory += direction;
-
 
     if (currentStory >= slides.length) {
         currentStory = 0;
     }
 
-
     if (currentStory < 0) {
         currentStory = slides.length - 1;
     }
 
-
-    slides[currentStory]
-        .classList.add("active");
-
-    if (dots[currentStory]) {
-        dots[currentStory]
-            .classList.add("active");
-    }
+    slides[currentStory]?.classList.add("active");
+    dots[currentStory]?.classList.add("active");
 }
 
 
-
-/* =========================
+/* =========================================================
    FLOATING HEARTS
-========================= */
+========================================================= */
 
-document.addEventListener("DOMContentLoaded", () => {
+function initFloatingHearts() {
+    const hearts = document.querySelectorAll(".floating-hearts span");
 
-    const hearts =
-        document.querySelectorAll(".floating-hearts span");
+    hearts.forEach((heart) => {
+        const randomLeft = Math.random() * 100;
+        const randomSize = 15 + Math.random() * 40;
+        const randomDuration = 6 + Math.random() * 8;
+        const randomDelay = Math.random() * 6;
 
-
-    hearts.forEach(heart => {
-
-        const randomLeft =
-            Math.random() * 100;
-
-        const randomSize =
-            15 + Math.random() * 40;
-
-        const randomDuration =
-            6 + Math.random() * 8;
-
-        const randomDelay =
-            Math.random() * 6;
-
-
-        heart.style.left =
-            randomLeft + "%";
-
-        heart.style.fontSize =
-            randomSize + "px";
-
-        heart.style.animationDuration =
-            randomDuration + "s";
-
-        heart.style.animationDelay =
-            randomDelay + "s";
-
+        heart.style.left = `${randomLeft}%`;
+        heart.style.fontSize = `${randomSize}px`;
+        heart.style.animationDuration = `${randomDuration}s`;
+        heart.style.animationDelay = `${randomDelay}s`;
     });
-
-});
-
-
-
-/* =========================
-   ZOOM FOTO
-========================= */
-
-const storyPhotos =
-    document.querySelectorAll(".story-slide img");
-
-const lightbox =
-    document.getElementById("lightbox");
-
-const lightboxImage =
-    document.getElementById("lightboxImage");
-
-
-storyPhotos.forEach(function(photo) {
-
-    photo.addEventListener("click", function() {
-
-        lightboxImage.src =
-            photo.src;
-
-        lightbox.classList.add("active");
-
-    });
-
-});
-
-
-if (lightbox) {
-
-    lightbox.addEventListener("click", function() {
-
-        lightbox.classList.remove("active");
-
-    });
-
 }
 
 
-/* =========================================
-   TRUE 3D GALAXY
-========================================= */
+/* =========================================================
+   LIGHTBOX ALBUM
+========================================================= */
+
+function initLightbox() {
+    const storyPhotos = document.querySelectorAll(".story-slide img");
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImage = document.getElementById("lightboxImage");
+
+    if (!lightbox || !lightboxImage) return;
+
+    storyPhotos.forEach((photo) => {
+        photo.addEventListener("click", () => {
+            lightboxImage.src = photo.src;
+            lightbox.classList.add("active");
+        });
+    });
+
+    lightbox.addEventListener("click", (event) => {
+        if (
+            event.target === lightbox ||
+            event.target === lightboxImage
+        ) {
+            lightbox.classList.remove("active");
+        }
+    });
+
+    document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+            lightbox.classList.remove("active");
+        }
+    });
+}
+
+
+/* =========================================================
+   GALAXY VARIABLES
+========================================================= */
 
 let galaxyStarted = false;
+
 let galaxyScene;
 let galaxyCamera;
 let galaxyRenderer;
+
 let galaxyWords = [];
 let galaxyRaycaster;
 let galaxyMouse;
-
 let galaxyGroup;
+
+let galaxyStars;
+let milkyWayStars;
+let galaxyNebula;
+
+let centerPhotoGroup = null;
+let photoFront = null;
+let photoBack = null;
+
+let photoFlipped = false;
+let currentPhotoRotation = 0;
+let targetPhotoRotation = 0;
+
+let galaxyDragging = false;
+let galaxyMoved = false;
+
+let galaxyPreviousPointer = {
+    x: 0,
+    y: 0
+};
+
+let galaxyRotationVelocity = {
+    x: 0,
+    y: 0
+};
+
+let galaxyTargetRotation = {
+    x: 0,
+    y: 0
+};
+
+let galaxyCurrentRotation = {
+    x: 0,
+    y: 0
+};
+
+let galaxyZoomTarget = 18;
+let galaxyZoomCurrent = 18;
+
+
+/* =========================================================
+   ROMANTIC WORDS
+========================================================= */
 
 const romanticWords = [
     "sayang",
@@ -312,29 +263,165 @@ const romanticWords = [
     "harapan",
     "kenangan",
     "senja",
-    "bahagia",
-    "favorite",
+    "romantis",
+    "setia",
+    "nyaman",
+    "hangat",
+    "mesra",
+    "lembut",
+    "perhatian",
+    "kesayangan",
+    "pujaan",
+    "kekasih",
+    "jodoh",
+    "teman hidup",
+    "belahan jiwa",
+    "satu hati",
+    "satu tujuan",
+    "teman cerita",
+    "tempat pulang",
+    "pelipur hati",
+    "penenang hati",
+    "pemilik hati",
+    "seumur hidup",
+    "tak terganti",
+    "selalu kamu",
+    "hanya kamu",
+    "untukmu",
+    "darimu",
+    "denganmu",
+    "tentangmu",
+    "menunggumu",
+    "merindukanmu",
+    "memikirkanmu",
+    "menyayangimu",
+    "mencintaimu",
+    "memilihmu",
+    "menjagamu",
+    "memelukmu",
+    "menemanimu",
+    "tersenyum bersamamu",
+    "tumbuh bersamamu",
+    "berjalan bersamamu",
+    "menua bersamamu",
+    "selalu ada",
+    "selalu pulang",
+    "selalu dekat",
+    "selalu di hati",
+    "selalu bersama",
+    "tak pernah sendiri",
     "my love",
     "my person",
-    "always",
-    "forever",
-    "you",
-    "us",
-    "love",
-    "happiness"
+    "my favorite",
+    "my home",
+    "my happiness",
+    "my safe place",
+    "my forever",
+    "my everything",
+    "my one and only",
+    "my soulmate",
+    "true love",
+    "pure love",
+    "sweet love",
+    "endless love",
+    "first love",
+    "last love",
+    "forever yours",
+    "always yours",
+    "only you",
+    "just us",
+    "you & me",
+    "you are home",
+    "you are enough",
+    "you are special",
+    "you are my world",
+    "with you",
+    "for you",
+    "about you",
+    "love you",
+    "miss you"
 ];
 
 
-/* =========================
-   BUKA GALAXY
-========================= */
+/* =========================================================
+   LOVE MESSAGES
+========================================================= */
+
+const loveMessages = [
+    "Di antara jutaan kata, tetap kamu yang paling berarti. ❤️",
+    "Kalau semua tempat adalah ruang, kamu tetap tempat pulangku. ❤️",
+    "Ada banyak hal indah di dunia, tapi kamu salah satu yang paling aku syukuri. ✨",
+    "Kalau waktu bisa berhenti, aku ingin berhenti di momen bersama kamu. ⏳❤️",
+    "Dari sekian banyak kemungkinan, aku senang kita dipertemukan. 🥰",
+    "Kamu adalah bagian favorit dari ceritaku. 📖❤️",
+    "Semoga cerita kita terus punya halaman baru. 📖✨",
+    "Aku ingin mengingat sebanyak mungkin momen kecil bersama kamu. 📸❤️",
+    "Senyummu selalu punya cara sederhana untuk membuat hariku lebih indah. 😊❤️",
+    "Kalau bahagia punya nama, mungkin namanya adalah kamu. 🥰❤️",
+    "Aku tidak butuh hari yang sempurna, cukup ada kamu di dalamnya. ❤️✨",
+    "Di antara semua cerita yang pernah ada, aku ingin cerita kita menjadi yang paling panjang. 📖❤️",
+    "Kamu membuat hal sederhana terasa begitu istimewa. 🥹✨",
+    "Aku suka caramu hadir tanpa banyak kata, tapi selalu berhasil membuatku nyaman. 🤍",
+    "Kalau aku boleh memilih satu tempat untuk selalu kembali, aku akan memilih kamu. 🏡❤️",
+    "Bersamamu, waktu terasa berjalan terlalu cepat. ⏳🥰",
+    "Aku tidak tahu bagaimana akhir cerita kita, tapi aku ingin terus menulisnya bersamamu. 📖❤️",
+    "Kamu adalah alasan kecil di balik banyak senyumku. 😊❤️",
+    "Ada rasa nyaman yang sulit dijelaskan setiap kali aku bersamamu. 🥹🤍",
+    "Aku ingin menjadi seseorang yang selalu bisa kamu cari ketika dunia terasa melelahkan. 🤗❤️",
+    "Tidak perlu sesuatu yang mewah, kebersamaan sederhana denganmu sudah cukup. 🌷❤️",
+    "Aku suka ketika namamu tiba-tiba muncul di pikiranku tanpa alasan. 💭❤️",
+    "Kalau rindu bisa menjadi pesan, mungkin setiap hari aku akan mengirimkannya kepadamu. 💌",
+    "Kamu datang seperti kebetulan, tapi terasa seperti sesuatu yang sudah lama aku tunggu. ✨❤️",
+    "Aku ingin menghabiskan lebih banyak hari dengan cerita-cerita kecil bersamamu. 🌤️🥰",
+    "Dunia terasa sedikit lebih hangat ketika kamu ada di dekatku. ☀️❤️",
+    "Aku tidak mencari seseorang yang sempurna, aku hanya ingin seseorang yang terasa tepat sepertimu. 🥰🤍",
+    "Kalau setiap kenangan punya warna, kenangan bersamamu pasti penuh warna indah. 🌈❤️",
+    "Aku senang pernah menemukan seseorang yang membuat hati terasa begitu tenang. 🥹🤍",
+    "Bersamamu, diam pun terasa seperti percakapan yang menyenangkan. 🤍🌙",
+    "Aku ingin melihat lebih banyak matahari terbit dan terbenam bersamamu. 🌅❤️",
+    "Kamu adalah salah satu alasan mengapa aku percaya bahwa pertemuan bisa menjadi sesuatu yang indah. ✨🥰",
+    "Aku tidak perlu banyak alasan untuk menyukaimu, karena kehadiranmu sendiri sudah cukup. ❤️",
+    "Semoga setiap langkah yang kita ambil membawa kita semakin dekat pada cerita yang indah. 🥰✨",
+    "Aku ingin menjadi bagian dari hari-harimu, bahkan dalam hal-hal kecil. 🤍🌷",
+    "Ada sesuatu tentang dirimu yang selalu berhasil membuatku ingin tinggal lebih lama. 🥹❤️",
+    "Kalau hidup adalah perjalanan, aku senang pernah berjalan di jalan yang sama denganmu. 🛤️❤️",
+    "Aku berharap suatu hari nanti kita bisa tersenyum sambil mengingat semua perjalanan yang pernah kita lalui. 😊❤️",
+    "Kamu membuat hari biasa terasa seperti kenangan yang ingin aku simpan. 📸❤️",
+    "Aku suka caramu membuat dunia terasa lebih sederhana hanya dengan berada di dekatku. 🤍✨",
+    "Semoga kita selalu punya alasan untuk saling tersenyum. 😊❤️",
+    "Aku ingin mengenalmu lebih jauh, bukan hanya hari ini, tapi juga di hari-hari yang akan datang. 🥰🌷",
+    "Tidak semua hal indah harus besar, terkadang cukup sebuah percakapan kecil denganmu. 💬❤️",
+    "Aku bersyukur untuk setiap kesempatan yang membuatku bisa mengenalmu. 🙏❤️",
+    "Kalau aku bisa menyimpan satu hal dari hari ini, aku ingin menyimpan momen bersamamu. 🥹📸",
+    "Kamu bukan sekadar bagian dari hariku, kamu adalah bagian yang selalu ingin aku tunggu. ⏳❤️",
+    "Aku ingin terus menemukan alasan baru untuk menghargai keberadaanmu. 🌷🤍",
+    "Semoga jarak, waktu, dan kesibukan tidak pernah membuat kita lupa betapa berartinya kebersamaan. 🥺❤️",
+    "Ada banyak tempat yang ingin aku kunjungi, tapi semuanya terasa lebih menarik kalau bersamamu. 🌎❤️",
+    "Aku ingin mengumpulkan kenangan bersamamu sebanyak mungkin, satu hari demi satu hari. 📸🥰",
+    "Kamu membuatku mengerti bahwa rasa nyaman bisa ditemukan dalam diri seseorang. 🤍🥹",
+    "Aku tidak tahu apa yang akan terjadi besok, tapi aku berharap kamu masih ada dalam ceritaku. 🌙❤️",
+    "Kadang aku hanya ingin duduk bersamamu dan menikmati waktu tanpa perlu mengatakan apa-apa. 🥹🤍",
+    "Setiap kali mengingatmu, selalu ada alasan kecil untuk tersenyum. 😊💭",
+    "Aku berharap kita selalu bisa saling menjadi alasan untuk tetap percaya pada hal-hal baik. ✨❤️",
+    "Kalau ada satu hal yang ingin aku ulang berkali-kali, mungkin itu adalah waktu yang pernah kita habiskan bersama. 🔁❤️",
+    "Terima kasih sudah menjadi bagian dari cerita yang membuat hari-hariku terasa lebih berarti. 🥹❤️",
+    "Dari semua hal yang bisa datang dan pergi, aku berharap kebersamaan kita tetap tinggal. 🤍🌙"
+];
+
+
+/* =========================================================
+   OPEN GALAXY
+========================================================= */
 
 function openGalaxy() {
+    document.getElementById("giftPage")?.classList.add("hidden");
 
-    document.getElementById("giftPage").classList.add("hidden");
+    const galaxyPage =
+        document.getElementById("galaxyPage");
 
-    const galaxyPage = document.getElementById("galaxyPage");
+    if (!galaxyPage) return;
 
+    galaxyPage.classList.remove("hidden");
     galaxyPage.style.display = "block";
 
     if (!galaxyStarted) {
@@ -344,42 +431,73 @@ function openGalaxy() {
 }
 
 
-/* =========================
-   START 3D GALAXY
-========================= */
+/* =========================================================
+   START GALAXY
+========================================================= */
 
 function start3DGalaxy() {
 
-    const container = document.getElementById("galaxySpace");
+    const container =
+        document.getElementById("galaxySpace");
 
-    /* SCENE */
+    if (
+        !container ||
+        typeof THREE === "undefined"
+    ) {
+        console.error(
+            "Three.js atau #galaxySpace tidak ditemukan."
+        );
 
-    galaxyScene = new THREE.Scene();
+        return;
+    }
 
-    galaxyScene.background = new THREE.Color(0x020007);
+
+    /* =========================
+       SCENE
+    ========================= */
+
+    galaxyScene =
+        new THREE.Scene();
+
+    galaxyScene.background =
+        new THREE.Color(0x010006);
 
 
-    /* CAMERA */
+    /* =========================
+       CAMERA
+    ========================= */
 
-    galaxyCamera = new THREE.PerspectiveCamera(
-        65,
-        window.innerWidth / window.innerHeight,
-        0.1,
-        3000
+    galaxyCamera =
+        new THREE.PerspectiveCamera(
+            65,
+            window.innerWidth /
+            window.innerHeight,
+            0.1,
+            3000
+        );
+
+    galaxyCamera.position.set(
+        0,
+        0,
+        galaxyZoomCurrent
     );
 
-    galaxyCamera.position.z = 18;
 
+    /* =========================
+       RENDERER
+    ========================= */
 
-    /* RENDERER */
-
-    galaxyRenderer = new THREE.WebGLRenderer({
-        antialias: true,
-        alpha: false
-    });
+    galaxyRenderer =
+        new THREE.WebGLRenderer({
+            antialias: true,
+            alpha: false
+        });
 
     galaxyRenderer.setPixelRatio(
-        Math.min(window.devicePixelRatio, 2)
+        Math.min(
+            window.devicePixelRatio || 1,
+            2
+        )
     );
 
     galaxyRenderer.setSize(
@@ -387,84 +505,92 @@ function start3DGalaxy() {
         window.innerHeight
     );
 
-    galaxyRenderer.outputColorSpace = THREE.SRGBColorSpace;
+    galaxyRenderer.outputColorSpace =
+        THREE.SRGBColorSpace;
 
-    container.appendChild(galaxyRenderer.domElement);
-
-
-    /* GROUP */
-
-    galaxyGroup = new THREE.Group();
-
-    galaxyScene.add(galaxyGroup);
+    container.appendChild(
+        galaxyRenderer.domElement
+    );
 
 
-    /* RAYCASTER */
+    /* =========================
+       MAIN GALAXY GROUP
+    ========================= */
 
-    galaxyRaycaster = new THREE.Raycaster();
+    galaxyGroup =
+        new THREE.Group();
 
-    galaxyMouse = new THREE.Vector2();
+    galaxyScene.add(
+        galaxyGroup
+    );
 
 
-    /* STARS */
+    /* =========================
+       RAYCASTER
+    ========================= */
+
+    galaxyRaycaster =
+        new THREE.Raycaster();
+
+    galaxyMouse =
+        new THREE.Vector2();
+
+
+    /* =========================
+       CREATE EVERYTHING
+    ========================= */
 
     createStars();
+    createMilkyWay();
 
-
-    /* ROMANTIC WORDS */
+    // Tidak memakai SphereGeometry
+    // di tengah karena foto adalah
+    // pusat utama galaxy.
+    createNebula();
 
     createGalaxyWords();
-
-
-    /* PHOTO */
 
     createCenterPhoto();
 
 
-    /* EVENTS */
+    /* =========================
+       EVENTS
+    ========================= */
 
-    galaxyRenderer.domElement.addEventListener(
+    const canvas =
+        galaxyRenderer.domElement;
+
+    canvas.addEventListener(
         "pointerdown",
         galaxyPointerDown
     );
 
-    galaxyRenderer.domElement.addEventListener(
+    canvas.addEventListener(
         "pointermove",
         galaxyPointerMove
     );
 
-    galaxyRenderer.domElement.addEventListener(
+    canvas.addEventListener(
         "pointerup",
         galaxyPointerUp
     );
 
-    galaxyRenderer.domElement.addEventListener(
-        "click",
-        galaxyClick
+    canvas.addEventListener(
+        "pointercancel",
+        galaxyPointerUp
     );
 
-    galaxyRenderer.domElement.addEventListener(
-    "touchstart",
-    galaxyTouchStart,
-    { passive: false }
-);
-
-galaxyRenderer.domElement.addEventListener(
-    "touchmove",
-    galaxyTouchMove,
-    { passive: false }
-);
-
-galaxyRenderer.domElement.addEventListener(
-    "touchend",
-    galaxyTouchEnd,
-    { passive: false }
-);
-
-    galaxyRenderer.domElement.addEventListener(
+    canvas.addEventListener(
         "wheel",
         galaxyZoom,
-        { passive: false }
+        {
+            passive: false
+        }
+    );
+
+    canvas.addEventListener(
+        "click",
+        galaxyClick
     );
 
 
@@ -474,27 +600,95 @@ galaxyRenderer.domElement.addEventListener(
     );
 
 
+    /* =========================
+       POPUP CLOSE
+    ========================= */
+
+    const closeMessage =
+        document.getElementById(
+            "closeMessage"
+        );
+
+    if (closeMessage) {
+
+        closeMessage.addEventListener(
+            "click",
+            closeLoveMessage
+        );
+    }
+
+
+    /* =========================
+       TOUCH SUPPORT
+    ========================= */
+
+    canvas.addEventListener(
+        "touchstart",
+        galaxyTouchStart,
+        {
+            passive: false
+        }
+    );
+
+    canvas.addEventListener(
+        "touchmove",
+        galaxyTouchMove,
+        {
+            passive: false
+        }
+    );
+
+    canvas.addEventListener(
+        "touchend",
+        galaxyTouchEnd,
+        {
+            passive: false
+        }
+    );
+
+
+    /* =========================
+       START ANIMATION
+    ========================= */
+
     animateGalaxy();
 }
 
 
-/* =========================
-   STARS
-========================= */
+/* =========================================================
+   NORMAL STARS
+========================================================= */
 
 function createStars() {
 
-    const geometry = new THREE.BufferGeometry();
+    const geometry =
+        new THREE.BufferGeometry();
 
     const positions = [];
 
-    for (let i = 0; i < 3500; i++) {
+    const sizes = [];
 
-        const x = (Math.random() - .5) * 250;
-        const y = (Math.random() - .5) * 250;
-        const z = (Math.random() - .5) * 250;
+    for (let i = 0; i < 4200; i++) {
 
-        positions.push(x, y, z);
+        const x =
+            (Math.random() - 0.5) * 260;
+
+        const y =
+            (Math.random() - 0.5) * 260;
+
+        const z =
+            (Math.random() - 0.5) * 260;
+
+        positions.push(
+            x,
+            y,
+            z
+        );
+
+        sizes.push(
+            0.5 +
+            Math.random() * 1.5
+        );
     }
 
     geometry.setAttribute(
@@ -505,34 +699,229 @@ function createStars() {
         )
     );
 
-    const material = new THREE.PointsMaterial({
-        color: 0xffffff,
-        size: .12,
-        transparent: true,
-        opacity: .8
-    });
+    const material =
+        new THREE.PointsMaterial({
+            color: 0xffffff,
+            size: 0.13,
+            transparent: true,
+            opacity: 0.82,
+            depthWrite: false
+        });
 
-    const stars = new THREE.Points(
-        geometry,
-        material
+    galaxyStars =
+        new THREE.Points(
+            geometry,
+            material
+        );
+
+    galaxyScene.add(
+        galaxyStars
     );
-
-    galaxyScene.add(stars);
 }
 
 
-/* =========================
-   TEXTURE KATA
-========================= */
+/* =========================================================
+   MILKY WAY
+========================================================= */
+
+function createMilkyWay() {
+
+    const geometry =
+        new THREE.BufferGeometry();
+
+    const positions = [];
+
+    const totalStars = 7000;
+
+    for (
+        let i = 0;
+        i < totalStars;
+        i++
+    ) {
+
+        const radius =
+            Math.pow(
+                Math.random(),
+                0.55
+            ) * 17 + 0.5;
+
+        const arm =
+            Math.floor(
+                Math.random() * 5
+            );
+
+        const baseAngle =
+            (arm / 5) *
+            Math.PI *
+            2;
+
+        const spiralAngle =
+            baseAngle +
+            radius * 0.48;
+
+        const randomAngle =
+            spiralAngle +
+            (
+                Math.random() - 0.5
+            ) *
+            (
+                0.45 +
+                radius * 0.025
+            );
+
+        const thickness =
+            Math.pow(
+                Math.random(),
+                1.8
+            ) * 1.7;
+
+        const x =
+            Math.cos(randomAngle) *
+            radius;
+
+        const z =
+            Math.sin(randomAngle) *
+            radius;
+
+        const y =
+            (
+                Math.random() - 0.5
+            ) *
+            thickness;
+
+        positions.push(
+            x,
+            y,
+            z
+        );
+    }
+
+    geometry.setAttribute(
+        "position",
+        new THREE.Float32BufferAttribute(
+            positions,
+            3
+        )
+    );
+
+    const material =
+        new THREE.PointsMaterial({
+            color: 0xffd9f5,
+            size: 0.055,
+            transparent: true,
+            opacity: 0.78,
+            depthWrite: false,
+            blending:
+                THREE.AdditiveBlending
+        });
+
+    milkyWayStars =
+        new THREE.Points(
+            geometry,
+            material
+        );
+
+    galaxyGroup.add(
+        milkyWayStars
+    );
+}
+
+
+/* =========================================================
+   NEBULA
+========================================================= */
+
+function createNebula() {
+
+    const geometry =
+        new THREE.BufferGeometry();
+
+    const positions = [];
+
+    for (
+        let i = 0;
+        i < 1200;
+        i++
+    ) {
+
+        const angle =
+            Math.random() *
+            Math.PI *
+            2;
+
+        const radius =
+            3 +
+            Math.random() * 15;
+
+        const x =
+            Math.cos(angle) *
+            radius;
+
+        const z =
+            Math.sin(angle) *
+            radius;
+
+        const y =
+            (
+                Math.random() - 0.5
+            ) * 2.5;
+
+        positions.push(
+            x,
+            y,
+            z
+        );
+    }
+
+    geometry.setAttribute(
+        "position",
+        new THREE.Float32BufferAttribute(
+            positions,
+            3
+        )
+    );
+
+    const material =
+        new THREE.PointsMaterial({
+            color: 0xb86cff,
+            size: 0.18,
+            transparent: true,
+            opacity: 0.035,
+            depthWrite: false,
+            blending:
+                THREE.AdditiveBlending
+        });
+
+    galaxyNebula =
+        new THREE.Points(
+            geometry,
+            material
+        );
+
+    galaxyGroup.add(
+        galaxyNebula
+    );
+}
+
+
+/* =========================================================
+   WORD TEXTURE
+========================================================= */
 
 function createWordTexture(text) {
 
-    const canvas = document.createElement("canvas");
+    const canvas =
+        document.createElement(
+            "canvas"
+        );
 
     canvas.width = 512;
     canvas.height = 128;
 
-    const ctx = canvas.getContext("2d");
+    const ctx =
+        canvas.getContext("2d");
+
+    if (!ctx) return null;
 
     ctx.clearRect(
         0,
@@ -541,14 +930,20 @@ function createWordTexture(text) {
         canvas.height
     );
 
-    ctx.font = "bold 42px Dancing Script, cursive";
+    ctx.font =
+        "bold 48px Dancing Script, cursive";
+
     ctx.textAlign = "center";
+
     ctx.textBaseline = "middle";
 
-    ctx.shadowColor = "#ff65d5";
-    ctx.shadowBlur = 18;
+    ctx.shadowColor =
+        "#c026ff";
 
-    ctx.fillStyle = "rgba(255,220,250,.95)";
+    ctx.shadowBlur = 25;
+
+    ctx.fillStyle =
+        "rgba(255,220,250,.95)";
 
     ctx.fillText(
         text,
@@ -556,25 +951,32 @@ function createWordTexture(text) {
         canvas.height / 2
     );
 
-    const texture = new THREE.CanvasTexture(canvas);
+    const texture =
+        new THREE.CanvasTexture(
+            canvas
+        );
 
-    texture.colorSpace = THREE.SRGBColorSpace;
+    texture.colorSpace =
+        THREE.SRGBColorSpace;
 
     return texture;
 }
 
 
-/* =========================
-   WORDS 3D
-========================= */
+/* =========================================================
+   GALAXY WORDS
+========================================================= */
 
 function createGalaxyWords() {
 
-    const total = 700;
+    const total = 650;
+    const radius = 15;
 
-    const radius = 12;
-
-    for (let i = 0; i < total; i++) {
+    for (
+        let i = 0;
+        i < total;
+        i++
+    ) {
 
         const text =
             romanticWords[
@@ -587,34 +989,45 @@ function createGalaxyWords() {
         const texture =
             createWordTexture(text);
 
+        if (!texture) continue;
+
         const material =
             new THREE.SpriteMaterial({
                 map: texture,
                 transparent: true,
                 depthTest: true,
-                depthWrite: false
+                depthWrite: false,
+                opacity:
+                    0.45 +
+                    Math.random() * 0.45
             });
 
         const sprite =
-            new THREE.Sprite(material);
+            new THREE.Sprite(
+                material
+            );
 
 
-        /* RANDOM 3D SPHERE */
+        /* RANDOM 3D POSITION */
 
         const theta =
             Math.random() *
-            Math.PI * 2;
+            Math.PI *
+            2;
 
         const phi =
             Math.acos(
-                2 * Math.random() - 1
+                2 *
+                Math.random() -
+                1
             );
 
         const r =
-            3 +
-            Math.pow(Math.random(), .55) *
-            radius;
-
+            4 +
+            Math.pow(
+                Math.random(),
+                0.6
+            ) * radius;
 
         const x =
             r *
@@ -630,7 +1043,6 @@ function createGalaxyWords() {
             Math.sin(phi) *
             Math.sin(theta);
 
-
         sprite.position.set(
             x,
             y,
@@ -638,260 +1050,448 @@ function createGalaxyWords() {
         );
 
 
+        /* RANDOM SCALE */
+
         const scale =
-            .25 +
-            Math.random() * .45;
+            0.22 +
+            Math.random() *
+            0.48;
 
         sprite.scale.set(
-            scale * 2.8,
-            scale,
+            scale * 4.2,
+            scale * 1.4,
             1
         );
 
 
+        /* CUSTOM DATA */
+
         sprite.userData.message =
-            getRandomLoveMessage(text);
+            getRandomLoveMessage();
 
+        sprite.userData.baseScale =
+            scale;
 
-        galaxyWords.push(sprite);
+        sprite.userData.floatOffset =
+            Math.random() *
+            Math.PI *
+            2;
 
-        galaxyGroup.add(sprite);
+        sprite.userData.floatSpeed =
+            0.3 +
+            Math.random() *
+            0.8;
+
+        galaxyWords.push(
+            sprite
+        );
+
+        galaxyGroup.add(
+            sprite
+        );
     }
 }
 
 
-/* =========================
-   MESSAGE
-========================= */
+/* =========================================================
+   RANDOM LOVE MESSAGE
+========================================================= */
 
-function getRandomLoveMessage(word) {
+function getRandomLoveMessage() {
 
-    const messages = [
-        "Di antara jutaan kata, tetap kamu yang paling berarti. ❤️",
-
-        "Kalau semua tempat adalah ruang, kamu tetap tempat pulangku.",
-
-        "Ada banyak hal indah di dunia, tapi kamu salah satu yang paling aku syukuri.",
-
-        "Kalau waktu bisa berhenti, aku ingin berhenti di momen bersama kamu.",
-
-        "Dari sekian banyak kemungkinan, aku senang kita dipertemukan.",
-
-        "Kamu adalah bagian favorit dari ceritaku.",
-
-        "Semoga cerita kita terus punya halaman baru.",
-
-        "Aku ingin mengingat sebanyak mungkin momen kecil bersama kamu."
-    ];
-
-    return messages[
+    return loveMessages[
         Math.floor(
             Math.random() *
-            messages.length
+            loveMessages.length
         )
     ];
 }
 
 
-/* =========================
-   FOTO TENGAH
-========================= */
+/* =========================================================
+   CENTER PHOTO
+========================================================= */
 
 function createCenterPhoto() {
 
     const loader =
         new THREE.TextureLoader();
 
+    const frontPath =
+        "imutku.jpg";
+
+    const backPath =
+        "imutku-belakang.jpg";
+
+
+    centerPhotoGroup =
+        new THREE.Group();
+
+    centerPhotoGroup.position.set(
+        0,
+        0,
+        0
+    );
+
+    galaxyGroup.add(
+        centerPhotoGroup
+    );
+
+
+    /* =========================
+       FRONT PHOTO
+    ========================= */
+
     loader.load(
-        "imutku.jpg",
-        function(texture) {
+        frontPath,
+        (texture) => {
 
             texture.colorSpace =
                 THREE.SRGBColorSpace;
 
-
             const geometry =
                 new THREE.CircleGeometry(
-                    2,
-                    64
+                    2.05,
+                    96
                 );
-
 
             const material =
                 new THREE.MeshBasicMaterial({
                     map: texture,
+
                     transparent: true,
-                    depthTest: true,
-                    depthWrite: true
+
+                    side:
+                        THREE.DoubleSide,
+
+                    depthTest: false,
+
+                    depthWrite: false
                 });
 
-
-            const photo =
+            photoFront =
                 new THREE.Mesh(
                     geometry,
                     material
                 );
 
-            photo.position.set(
-                0,
-                0,
-                0
+            photoFront.position.z =
+                0.2;
+
+            photoFront.renderOrder =
+                100;
+
+            photoFront.userData
+                .isCenterPhoto = true;
+
+            centerPhotoGroup.add(
+                photoFront
             );
+        }
+    );
 
 
-            galaxyGroup.add(photo);
+    /* =========================
+       BACK PHOTO
+    ========================= */
 
+    loader.load(
+        backPath,
+        (texture) => {
 
-            /* GLOW */
+            texture.colorSpace =
+                THREE.SRGBColorSpace;
 
-            const glowGeometry =
+            const geometry =
                 new THREE.CircleGeometry(
-                    2.7,
-                    64
+                    2.05,
+                    96
                 );
 
-            const glowMaterial =
+            const material =
                 new THREE.MeshBasicMaterial({
-                    color: 0xff55cc,
+                    map: texture,
+
                     transparent: true,
-                    opacity: .12,
+
+                    side:
+                        THREE.DoubleSide,
+
+                    depthTest: false,
+
                     depthWrite: false
                 });
 
-            const glow =
+            photoBack =
                 new THREE.Mesh(
-                    glowGeometry,
-                    glowMaterial
+                    geometry,
+                    material
                 );
 
-            glow.position.z = -.15;
+            photoBack.position.z =
+                -0.2;
 
-            galaxyGroup.add(glow);
+            photoBack.rotation.y =
+                Math.PI;
+
+            photoBack.renderOrder =
+                99;
+
+            photoBack.userData
+                .isCenterPhoto = true;
+
+            centerPhotoGroup.add(
+                photoBack
+            );
         }
     );
 }
 
 
-/* =========================
-   DRAG CAMERA
-========================= */
+/* =========================================================
+   FLIP CENTER PHOTO
+========================================================= */
 
-let dragging = false;
-let previousX = 0;
-let previousY = 0;
+function flipCenterPhoto() {
 
-let lastPinchDistance = null;
+    if (!centerPhotoGroup) return;
 
-function getPinchDistance(e) {
-    const dx = e.touches[0].clientX - e.touches[1].clientX;
-    const dy = e.touches[0].clientY - e.touches[1].clientY;
+    photoFlipped =
+        !photoFlipped;
 
-    return Math.sqrt(dx * dx + dy * dy);
+    targetPhotoRotation =
+        photoFlipped
+            ? Math.PI
+            : 0;
 }
 
-function galaxyTouchStart(e) {
 
-    if (e.touches.length === 2) {
-        lastPinchDistance = getPinchDistance(e);
-    }
-}
+/* =========================================================
+   ANIMATE CENTER PHOTO
+========================================================= */
 
-function galaxyTouchMove(e) {
+function animateCenterPhoto() {
 
-    if (e.touches.length !== 2) return;
+    if (!centerPhotoGroup) return;
 
-    e.preventDefault();
 
-    const currentDistance = getPinchDistance(e);
+    /* =========================
+       SMOOTH 180° FLIP
+    ========================= */
 
-    if (lastPinchDistance !== null) {
-
-        const difference =
-            currentDistance - lastPinchDistance;
-
-        // Jari menjauh = zoom IN
-        // Jari mendekat = zoom OUT
-        targetCameraZ -= difference * 0.025;
-
-        targetCameraZ = Math.max(
-            3,
-            Math.min(40, targetCameraZ)
+    currentPhotoRotation =
+        THREE.MathUtils.lerp(
+            currentPhotoRotation,
+            targetPhotoRotation,
+            0.075
         );
+
+    centerPhotoGroup.rotation.y =
+        currentPhotoRotation;
+
+
+    /* =========================
+       FLOATING HALUS
+    ========================= */
+
+    const time =
+        performance.now() *
+        0.001;
+
+    centerPhotoGroup.position.y =
+        Math.sin(
+            time * 1.2
+        ) * 0.08;
+
+    centerPhotoGroup.position.x =
+        Math.cos(
+            time * 0.8
+        ) * 0.04;
+}
+
+
+/* =========================================================
+   GALAXY POINTER DOWN
+========================================================= */
+
+function galaxyPointerDown(event) {
+
+    galaxyDragging = true;
+
+    galaxyMoved = false;
+
+    galaxyPreviousPointer.x =
+        event.clientX;
+
+    galaxyPreviousPointer.y =
+        event.clientY;
+
+    galaxyRotationVelocity.x = 0;
+
+    galaxyRotationVelocity.y = 0;
+
+    if (
+        galaxyRenderer
+            ?.domElement
+            ?.setPointerCapture
+    ) {
+
+        try {
+
+            galaxyRenderer
+                .domElement
+                .setPointerCapture(
+                    event.pointerId
+                );
+
+        } catch (error) {
+            /* ignore */
+        }
+    }
+}
+
+
+/* =========================================================
+   GALAXY POINTER MOVE
+========================================================= */
+
+function galaxyPointerMove(event) {
+
+    if (!galaxyDragging) return;
+
+    const deltaX =
+        event.clientX -
+        galaxyPreviousPointer.x;
+
+    const deltaY =
+        event.clientY -
+        galaxyPreviousPointer.y;
+
+    if (
+        Math.abs(deltaX) > 2 ||
+        Math.abs(deltaY) > 2
+    ) {
+        galaxyMoved = true;
     }
 
-    lastPinchDistance = currentDistance;
+    galaxyPreviousPointer.x =
+        event.clientX;
+
+    galaxyPreviousPointer.y =
+        event.clientY;
+
+
+    galaxyTargetRotation.y +=
+        deltaX * 0.004;
+
+    galaxyTargetRotation.x +=
+        deltaY * 0.003;
+
+    galaxyTargetRotation.x =
+        THREE.MathUtils.clamp(
+            galaxyTargetRotation.x,
+            -1.3,
+            1.3
+        );
+
+    galaxyRotationVelocity.y =
+        deltaX * 0.0015;
+
+    galaxyRotationVelocity.x =
+        deltaY * 0.001;
 }
 
-function galaxyTouchEnd(e) {
 
-    if (e.touches.length < 2) {
-        lastPinchDistance = null;
+/* =========================================================
+   GALAXY POINTER UP
+========================================================= */
+
+function galaxyPointerUp(event) {
+
+    galaxyDragging = false;
+
+    if (
+        galaxyRenderer
+            ?.domElement
+            ?.releasePointerCapture
+    ) {
+
+        try {
+
+            galaxyRenderer
+                .domElement
+                .releasePointerCapture(
+                    event.pointerId
+                );
+
+        } catch (error) {
+            /* ignore */
+        }
     }
 }
 
-let rotationX = 0;
-let rotationY = 0;
 
-let targetCameraZ = 18;
+/* =========================================================
+   GALAXY ZOOM
+========================================================= */
 
-function galaxyZoom(e) {
-    e.preventDefault();
+function galaxyZoom(event) {
 
-    targetCameraZ += e.deltaY * 0.02;
+    event.preventDefault();
 
-    targetCameraZ = Math.max(
-        4,
-        Math.min(40, targetCameraZ)
-    );
-}
+    const zoomAmount =
+        event.deltaY * 0.012;
 
-function galaxyPointerDown(e) {
+    galaxyZoomTarget +=
+        zoomAmount;
 
-    dragging = true;
-
-    previousX = e.clientX;
-    previousY = e.clientY;
-}
-
-function galaxyPointerMove(e) {
-
-    if (!dragging) return;
-
-    const dx =
-        e.clientX - previousX;
-
-    const dy =
-        e.clientY - previousY;
-
-    rotationY += dx * .004;
-    rotationX += dy * .004;
-
-    previousX = e.clientX;
-    previousY = e.clientY;
-}
-
-function galaxyPointerUp() {
-
-    dragging = false;
+    galaxyZoomTarget =
+        THREE.MathUtils.clamp(
+            galaxyZoomTarget,
+            7,
+            45
+        );
 }
 
 
-/* =========================
-   CLICK WORD
-========================= */
+/* =========================================================
+   GALAXY CLICK
+========================================================= */
 
-function galaxyClick(e) {
+function galaxyClick(event) {
+
+    if (galaxyMoved) {
+
+        galaxyMoved = false;
+
+        return;
+    }
+
+    if (!galaxyRenderer) return;
+
 
     const rect =
-        galaxyRenderer.domElement.getBoundingClientRect();
+        galaxyRenderer
+            .domElement
+            .getBoundingClientRect();
 
     galaxyMouse.x =
-        ((e.clientX - rect.left) /
-            rect.width) * 2 - 1;
+        (
+            (
+                event.clientX -
+                rect.left
+            ) /
+            rect.width
+        ) * 2 - 1;
 
     galaxyMouse.y =
-        -((e.clientY - rect.top) /
-            rect.height) * 2 + 1;
+        -(
+            (
+                event.clientY -
+                rect.top
+            ) /
+            rect.height
+        ) * 2 + 1;
 
 
     galaxyRaycaster.setFromCamera(
@@ -900,76 +1500,205 @@ function galaxyClick(e) {
     );
 
 
-    const hits =
+    /* =========================
+       CENTER PHOTO PRIORITY
+    ========================= */
+
+    const photoObjects = [];
+
+    if (photoFront) {
+        photoObjects.push(
+            photoFront
+        );
+    }
+
+    if (photoBack) {
+        photoObjects.push(
+            photoBack
+        );
+    }
+
+    const photoHits =
         galaxyRaycaster.intersectObjects(
-            galaxyWords
+            photoObjects,
+            false
         );
 
+    if (photoHits.length > 0) {
 
-    if (hits.length > 0) {
+        flipCenterPhoto();
 
-        const word =
-            hits[0].object;
+        return;
+    }
 
-        document.getElementById(
-            "messageText"
-        ).innerText =
-            word.userData.message;
 
+    /* =========================
+       WORD CLICK
+    ========================= */
+
+    const wordHits =
+        galaxyRaycaster.intersectObjects(
+            galaxyWords,
+            false
+        );
+
+    if (wordHits.length > 0) {
+
+        const selectedWord =
+            wordHits[0].object;
+
+        showLoveMessage(
+            selectedWord.userData.message
+        );
+    }
+}
+
+
+/* =========================================================
+   SHOW LOVE MESSAGE
+========================================================= */
+
+function showLoveMessage(message) {
+
+    const box =
         document.getElementById(
             "loveMessage"
-        ).classList.add("show");
-    }
-}
+        );
 
+    const text =
+        document.getElementById(
+            "messageText"
+        );
 
-/* =========================
-   CLOSE MESSAGE
-========================= */
+    if (!box || !text) return;
 
-document
-    .getElementById("closeMessage")
-    ?.addEventListener(
-        "click",
-        function() {
+    text.innerText =
+        message;
 
-            document
-                .getElementById("loveMessage")
-                .classList.remove("show");
-        }
-    );
-
-
-/* =========================
-   ANIMATION
-========================= */
-
-function animateGalaxy() {
-
-    requestAnimationFrame(animateGalaxy);
-    if (!dragging) {
-        rotationY += .0007;
-    }
-
-    galaxyGroup.rotation.y = rotationY;
-    galaxyGroup.rotation.x = rotationX;
-
-    galaxyCamera.position.z +=
-        (targetCameraZ - galaxyCamera.position.z) * 0.08;
-
-    galaxyRenderer.render(
-        galaxyScene,
-        galaxyCamera
+    box.classList.add(
+        "show"
     );
 }
 
-/* =========================
+
+/* =========================================================
+   CLOSE LOVE MESSAGE
+========================================================= */
+
+function closeLoveMessage() {
+
+    const box =
+        document.getElementById(
+            "loveMessage"
+        );
+
+    if (!box) return;
+
+    box.classList.remove(
+        "show"
+    );
+}
+
+
+/* =========================================================
+   TOUCH START
+========================================================= */
+
+function galaxyTouchStart(event) {
+
+    if (!event.touches.length) return;
+
+    event.preventDefault();
+
+    const touch =
+        event.touches[0];
+
+    galaxyDragging = true;
+
+    galaxyMoved = false;
+
+    galaxyPreviousPointer.x =
+        touch.clientX;
+
+    galaxyPreviousPointer.y =
+        touch.clientY;
+}
+
+
+/* =========================================================
+   TOUCH MOVE
+========================================================= */
+
+function galaxyTouchMove(event) {
+
+    if (!galaxyDragging) return;
+
+    if (!event.touches.length) return;
+
+    event.preventDefault();
+
+    const touch =
+        event.touches[0];
+
+    const deltaX =
+        touch.clientX -
+        galaxyPreviousPointer.x;
+
+    const deltaY =
+        touch.clientY -
+        galaxyPreviousPointer.y;
+
+    if (
+        Math.abs(deltaX) > 2 ||
+        Math.abs(deltaY) > 2
+    ) {
+
+        galaxyMoved = true;
+    }
+
+    galaxyPreviousPointer.x =
+        touch.clientX;
+
+    galaxyPreviousPointer.y =
+        touch.clientY;
+
+    galaxyTargetRotation.y +=
+        deltaX * 0.004;
+
+    galaxyTargetRotation.x +=
+        deltaY * 0.003;
+
+    galaxyTargetRotation.x =
+        THREE.MathUtils.clamp(
+            galaxyTargetRotation.x,
+            -1.3,
+            1.3
+        );
+}
+
+
+/* =========================================================
+   TOUCH END
+========================================================= */
+
+function galaxyTouchEnd() {
+
+    galaxyDragging = false;
+}
+
+
+/* =========================================================
    RESIZE
-========================= */
+========================================================= */
 
 function resizeGalaxy() {
 
-    if (!galaxyRenderer) return;
+    if (
+        !galaxyCamera ||
+        !galaxyRenderer
+    ) {
+        return;
+    }
 
     galaxyCamera.aspect =
         window.innerWidth /
@@ -982,3 +1711,209 @@ function resizeGalaxy() {
         window.innerHeight
     );
 }
+
+
+/* =========================================================
+   GALAXY ANIMATION
+========================================================= */
+
+function animateGalaxy() {
+
+    requestAnimationFrame(
+        animateGalaxy
+    );
+
+    if (
+        !galaxyRenderer ||
+        !galaxyScene ||
+        !galaxyCamera
+    ) {
+        return;
+    }
+
+    const time =
+        performance.now() *
+        0.001;
+
+
+    /* =========================
+       GALAXY ROTATION
+    ========================= */
+
+    if (!galaxyDragging) {
+
+        galaxyTargetRotation.y +=
+            0.0008;
+
+        galaxyTargetRotation.y +=
+            galaxyRotationVelocity.y;
+
+        galaxyTargetRotation.x +=
+            galaxyRotationVelocity.x;
+
+        galaxyRotationVelocity.x *=
+            0.94;
+
+        galaxyRotationVelocity.y *=
+            0.94;
+    }
+
+
+    galaxyCurrentRotation.x =
+        THREE.MathUtils.lerp(
+            galaxyCurrentRotation.x,
+            galaxyTargetRotation.x,
+            0.06
+        );
+
+    galaxyCurrentRotation.y =
+        THREE.MathUtils.lerp(
+            galaxyCurrentRotation.y,
+            galaxyTargetRotation.y,
+            0.06
+        );
+
+
+    galaxyGroup.rotation.x =
+        galaxyCurrentRotation.x;
+
+    galaxyGroup.rotation.y =
+        galaxyCurrentRotation.y;
+
+
+    /* =========================
+       STAR MOVEMENT
+    ========================= */
+
+    if (galaxyStars) {
+
+        galaxyStars.rotation.y +=
+            0.00008;
+
+        galaxyStars.rotation.x =
+            Math.sin(
+                time * 0.1
+            ) * 0.02;
+    }
+
+
+    /* =========================
+       MILKY WAY ROTATION
+    ========================= */
+
+    if (milkyWayStars) {
+
+        milkyWayStars.rotation.y +=
+            0.0005;
+    }
+
+
+    /* =========================
+       NEBULA MOVEMENT
+    ========================= */
+
+    if (galaxyNebula) {
+
+        galaxyNebula.rotation.y +=
+            0.00025;
+
+        galaxyNebula.rotation.z =
+            Math.sin(
+                time * 0.08
+            ) * 0.08;
+    }
+
+
+    /* =========================
+       FLOATING WORDS
+    ========================= */
+
+    galaxyWords.forEach((word) => {
+
+        const offset =
+            word.userData.floatOffset;
+
+        const speed =
+            word.userData.floatSpeed;
+
+        const baseScale =
+            word.userData.baseScale;
+
+        word.position.y +=
+            Math.sin(
+                time * speed +
+                offset
+            ) * 0.0008;
+
+        const pulse =
+            1 +
+            Math.sin(
+                time * 1.2 +
+                offset
+            ) * 0.035;
+
+        word.scale.set(
+            baseScale * 4.2 * pulse,
+            baseScale * 1.4 * pulse,
+            1
+        );
+    });
+
+
+    /* =========================
+       CENTER PHOTO
+    ========================= */
+
+    animateCenterPhoto();
+
+
+    /* =========================
+       CAMERA ZOOM
+    ========================= */
+
+    galaxyZoomCurrent =
+        THREE.MathUtils.lerp(
+            galaxyZoomCurrent,
+            galaxyZoomTarget,
+            0.08
+        );
+
+    galaxyCamera.position.z =
+        galaxyZoomCurrent;
+
+
+    /* =========================
+       RENDER
+    ========================= */
+
+    galaxyRenderer.render(
+        galaxyScene,
+        galaxyCamera
+    );
+}
+
+
+/* =========================================================
+   INITIALIZE
+========================================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
+
+        initFloatingHearts();
+
+        initLightbox();
+
+        const loveMessage =
+            document.getElementById(
+                "loveMessage"
+            );
+
+        if (loveMessage) {
+            loveMessage.classList.remove(
+                "show"
+            );
+        }
+    }
+);

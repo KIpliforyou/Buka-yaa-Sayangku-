@@ -1443,17 +1443,189 @@ button:active {
     margin: 10px;
 }
 
-.close-message {
-    position: absolute;
-    right: 12px;
-    top: 8px;
 
+.close-message {
+
+box-shadow: none !important;
     background: none !important;
     border: none !important;
-
-    color: white !important;
-    font-size: 28px;
+    color: #ff8eb0;
+    font-size: 22px;
+    top: 15px;
+    right: 15px;
     cursor: pointer;
+}
 
-    padding: 0 !important;
+.close-message:hover,
+.close-message:focus,
+.close-message:active {
+    background: none !important;
+    box-shadow: none !important;
+    transform: none !important;
+}
+
+/* =========================================================
+   FINAL GALAXY BUTTON
+========================================================= */
+
+.final-message .open-galaxy-btn {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: min(100%, 360px);
+    min-height: 64px;
+    margin-top: 22px;
+    padding: 15px 24px;
+    border: 1px solid rgba(255, 205, 244, .38);
+    border-radius: 999px;
+    background:
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,.22), transparent 28%),
+        linear-gradient(135deg, rgba(255, 72, 151, .95), rgba(128, 67, 255, .95));
+    color: #fff;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: .4px;
+    box-shadow:
+        0 12px 35px rgba(255, 63, 157, .28),
+        0 0 35px rgba(135, 73, 255, .20),
+        inset 0 1px 0 rgba(255,255,255,.35);
+    text-shadow: 0 1px 8px rgba(40, 0, 50, .35);
+    transform: translateY(0);
+    transition:
+        transform .35s cubic-bezier(.22,1,.36,1),
+        box-shadow .35s ease,
+        filter .35s ease;
+    animation: galaxyButtonFloat 3s ease-in-out infinite;
+}
+
+.final-message .open-galaxy-btn::before {
+    content: "";
+    position: absolute;
+    inset: -80% -30%;
+    z-index: -1;
+    background: linear-gradient(
+        110deg,
+        transparent 35%,
+        rgba(255,255,255,.42) 50%,
+        transparent 65%
+    );
+    transform: translateX(-55%) rotate(8deg);
+    animation: galaxyButtonShine 4s ease-in-out infinite;
+}
+
+.final-message .open-galaxy-btn::after {
+    content: "";
+    position: absolute;
+    inset: 2px;
+    border-radius: inherit;
+    border: 1px solid rgba(255,255,255,.14);
+    pointer-events: none;
+}
+
+.final-message .open-galaxy-btn:hover {
+    transform: translateY(-5px) scale(1.025);
+    filter: brightness(1.08);
+    box-shadow:
+        0 18px 45px rgba(255, 63, 157, .38),
+        0 0 55px rgba(135, 73, 255, .32),
+        inset 0 1px 0 rgba(255,255,255,.42);
+}
+
+.final-message .open-galaxy-btn:active {
+    transform: scale(.97);
+}
+
+.galaxy-btn-icon,
+.galaxy-btn-sparkle {
+    font-size: 23px;
+    line-height: 1;
+    filter: drop-shadow(0 0 8px rgba(255,255,255,.55));
+}
+
+.galaxy-btn-text {
+    position: relative;
+    z-index: 2;
+}
+
+@keyframes galaxyButtonFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
+}
+
+@keyframes galaxyButtonShine {
+    0%, 55% {
+        transform: translateX(-65%) rotate(8deg);
+        opacity: 0;
+    }
+    70% {
+        transform: translateX(65%) rotate(8deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(100%) rotate(8deg);
+        opacity: 0;
+    }
+}
+
+/* =========================================================
+   GALAXY POLISH
+========================================================= */
+
+#galaxyPage {
+    background:
+        radial-gradient(circle at 50% 50%, rgba(104, 24, 130, .13), transparent 35%),
+        radial-gradient(circle at 20% 80%, rgba(35, 90, 255, .08), transparent 32%),
+        #010006;
+}
+
+#galaxySpace::before,
+#galaxySpace::after {
+    content: "";
+    position: absolute;
+    inset: -20%;
+    pointer-events: none;
+    z-index: 2;
+}
+
+#galaxySpace::before {
+    background:
+        radial-gradient(ellipse at 50% 50%, transparent 18%, rgba(255, 82, 194, .035) 45%, transparent 70%);
+    filter: blur(25px);
+    animation: galaxyNebulaPulse 8s ease-in-out infinite;
+}
+
+#galaxySpace::after {
+    background:
+        radial-gradient(circle at 15% 30%, rgba(255,255,255,.06) 0 1px, transparent 2px),
+        radial-gradient(circle at 75% 65%, rgba(255,190,245,.05) 0 1px, transparent 2px);
+    background-size: 180px 180px, 230px 230px;
+    animation: galaxyDustDrift 25s linear infinite;
+}
+
+#galaxySpace canvas {
+    z-index: 1;
+}
+
+@keyframes galaxyNebulaPulse {
+    0%, 100% { opacity: .55; transform: scale(1); }
+    50% { opacity: .9; transform: scale(1.05); }
+}
+
+@keyframes galaxyDustDrift {
+    from { transform: translate3d(0, 0, 0); }
+    to { transform: translate3d(-80px, 45px, 0); }
+}
+
+@media (max-width: 600px) {
+    .final-message .open-galaxy-btn {
+        width: 100%;
+        min-height: 58px;
+        font-size: 14px;
+        gap: 9px;
+    }
 }
