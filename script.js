@@ -13,7 +13,7 @@ function checkPassword() {
     const correctPassword = "";
 
     if (password === correctPassword) {
-        error.innerText = "";
+        error.innerText = "12/12/2023";
 
         document.getElementById("passwordPage")?.classList.add("hidden");
         document.getElementById("questionPage")?.classList.remove("hidden");
