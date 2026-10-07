@@ -65,7 +65,7 @@ function openGift() {
     document.getElementById("birthdayPage")?.classList.add("hidden");
     document.getElementById("countdownPage")?.classList.remove("hidden");
 
-    let count = 3;
+    let count = 10;
     const countdown = document.getElementById("countdown");
 
     if (!countdown) return;
@@ -93,7 +93,7 @@ function openGift() {
 
 function daftarHadiah() {
     alert(
-        "Semoga kamu suka yaaa kado dari aku, Kamu suka kan warna Bunganya?, itu kalung buat kamu biar kamu bisa pake terus, sama ngejaga kalung itu kayak kita ngejaga hubungan meski LDR lintas Negoro Angin ini Ida sayang"
+        "Akan ada Hadiah spesial jika kamu tahu tombol ini sebelum aku kasih tahu yaaa. Semoga kamu suka yaaa kado dari aku, Kamu suka kan warna Bunganya?, itu kalung buat kamu biar kamu bisa pake terus, sama ngejaga kalung itu kayak kita ngejaga hubungan meski LDR lintas Negoro Angin ini Ida sayang"
     );
 }
 
@@ -206,10 +206,13 @@ let galaxyNebula;
 let centerPhotoGroup = null;
 let photoFront = null;
 let photoBack = null;
-
 let photoFlipped = false;
 let currentPhotoRotation = 0;
 let targetPhotoRotation = 0;
+
+// ✨ Efek foto tengah
+let photoRing = null;
+let photoParticles = [];
 
 let galaxyDragging = false;
 let galaxyMoved = false;
@@ -1136,6 +1139,61 @@ function createCenterPhoto() {
     galaxyGroup.add(
         centerPhotoGroup
     );
+
+    // ==============================
+// ✨ CINCIN CAHAYA FOTO
+// ==============================
+
+const ringGeometry = new THREE.RingGeometry(2.13, 2.18, 96);
+
+const ringMaterial = new THREE.MeshBasicMaterial({
+    color: 0xffb6ff,
+    transparent: true,
+    opacity: 0.7,
+    side: THREE.DoubleSide,
+    depthTest: false,
+    depthWrite: false
+});
+
+photoRing = new THREE.Mesh(ringGeometry, ringMaterial);
+
+photoRing.position.z = 0.25;
+photoRing.renderOrder = 101;
+
+centerPhotoGroup.add(photoRing);
+
+
+// ==============================
+// 🌟 PARTIKEL ORBIT FOTO
+// ==============================
+
+const particleGeometry = new THREE.SphereGeometry(0.035, 8, 8);
+
+for (let i = 0; i < 18; i++) {
+
+    const particleMaterial = new THREE.MeshBasicMaterial({
+        color: i % 2 === 0 ? 0xffffff : 0xffb6ff,
+        transparent: true,
+        opacity: 0.8,
+        depthTest: false,
+        depthWrite: false
+    });
+
+    const particle = new THREE.Mesh(
+        particleGeometry,
+        particleMaterial
+    );
+
+    particle.userData.angle = (Math.PI * 2 / 18) * i;
+    particle.userData.radius = 2.35 + Math.random() * 0.25;
+    particle.userData.speed = 0.25 + Math.random() * 0.35;
+    particle.userData.offset = Math.random() * Math.PI * 2;
+
+    particle.renderOrder = 102;
+
+    centerPhotoGroup.add(particle);
+    photoParticles.push(particle);
+}
 
 
     /* =========================
