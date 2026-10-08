@@ -1843,16 +1843,16 @@ function galaxyTouchMove(e) {
 
             // Jari menjauh = zoom in
             // Jari mendekat = zoom out
-            camera.position.z -=
-                difference * 0.025;
+            galaxyCamera.position.z -=
+    difference * 0.025;
 
             // Batas zoom
-            camera.position.z =
-                THREE.MathUtils.clamp(
-                    camera.position.z,
-                    5,
-                    80
-                );
+           galaxyCamera.position.z =
+    THREE.MathUtils.clamp(
+        galaxyCamera.position.z,
+        5,
+        80
+    );
         }
 
         lastPinchDistance =
