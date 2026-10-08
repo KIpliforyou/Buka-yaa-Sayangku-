@@ -93,7 +93,7 @@ function openGift() {
 
 function daftarHadiah() {
     alert(
-        "Akan ada Hadiah spesial jika kamu tahu tombol ini sebelum aku kasih tahu yaaa. Semoga kamu suka yaaa kado dari aku, Kamu suka kan warna Bunganya?, itu kalung buat kamu biar kamu bisa pake terus, sama ngejaga kalung itu kayak kita ngejaga hubungan meski LDR lintas Negoro Angin ini Ida sayang"
+        "kalau kamu tahu ini sebelum kukasih tahu, hadiah itu melambangkan rasa sayang kita yang tidak ada batasnya dalam hal apapun😊. dan juga warna kesukaanmu hehehe maaf kalo salah:)"
     );
 }
 
@@ -210,8 +210,8 @@ let photoFlipped = false;
 let currentPhotoRotation = 0;
 let targetPhotoRotation = 0;
 
-// ✨ Efek foto tengah
 let photoRing = null;
+let photoOuterRing = null;
 let photoParticles = [];
 
 let galaxyDragging = false;
@@ -1117,88 +1117,126 @@ function getRandomLoveMessage() {
 
 function createCenterPhoto() {
 
-    const loader =
-        new THREE.TextureLoader();
+    const loader = new THREE.TextureLoader();
 
-    const frontPath =
-        "imutku.jpg";
+    const frontPath = "imutku.jpg";
+    const backPath = "imutku-belakang.jpg";
 
-    const backPath =
-        "imutku-belakang.jpg";
+    centerPhotoGroup = new THREE.Group();
+    centerPhotoGroup.position.set(0, 0, 0);
+
+    galaxyGroup.add(centerPhotoGroup);
 
 
-    centerPhotoGroup =
-        new THREE.Group();
+    // =========================
+    // ✨ RING UTAMA
+    // =========================
 
-    centerPhotoGroup.position.set(
-        0,
-        0,
-        0
+    const ringGeometry = new THREE.RingGeometry(
+        2.12,
+        2.17,
+        128
     );
 
-    galaxyGroup.add(
-        centerPhotoGroup
-    );
-
-    // ==============================
-// ✨ CINCIN CAHAYA FOTO
-// ==============================
-
-const ringGeometry = new THREE.RingGeometry(2.13, 2.18, 96);
-
-const ringMaterial = new THREE.MeshBasicMaterial({
-    color: 0xffb6ff,
-    transparent: true,
-    opacity: 0.7,
-    side: THREE.DoubleSide,
-    depthTest: false,
-    depthWrite: false
-});
-
-photoRing = new THREE.Mesh(ringGeometry, ringMaterial);
-
-photoRing.position.z = 0.25;
-photoRing.renderOrder = 101;
-
-centerPhotoGroup.add(photoRing);
-
-
-// ==============================
-// 🌟 PARTIKEL ORBIT FOTO
-// ==============================
-
-const particleGeometry = new THREE.SphereGeometry(0.035, 8, 8);
-
-for (let i = 0; i < 18; i++) {
-
-    const particleMaterial = new THREE.MeshBasicMaterial({
-        color: i % 2 === 0 ? 0xffffff : 0xffb6ff,
+    const ringMaterial = new THREE.MeshBasicMaterial({
+        color: 0xffb8ff,
         transparent: true,
-        opacity: 0.8,
+        opacity: 0.75,
+        side: THREE.DoubleSide,
         depthTest: false,
         depthWrite: false
     });
 
-    const particle = new THREE.Mesh(
-        particleGeometry,
-        particleMaterial
+    photoRing = new THREE.Mesh(
+        ringGeometry,
+        ringMaterial
     );
 
-    particle.userData.angle = (Math.PI * 2 / 18) * i;
-    particle.userData.radius = 2.35 + Math.random() * 0.25;
-    particle.userData.speed = 0.25 + Math.random() * 0.35;
-    particle.userData.offset = Math.random() * Math.PI * 2;
+    photoRing.position.z = 0.28;
+    photoRing.renderOrder = 101;
 
-    particle.renderOrder = 102;
-
-    centerPhotoGroup.add(particle);
-    photoParticles.push(particle);
-}
+    centerPhotoGroup.add(photoRing);
 
 
-    /* =========================
-       FRONT PHOTO
-    ========================= */
+    // =========================
+    // 💜 RING LUAR
+    // =========================
+
+    const outerRingGeometry = new THREE.RingGeometry(
+        2.25,
+        2.265,
+        128
+    );
+
+    const outerRingMaterial = new THREE.MeshBasicMaterial({
+        color: 0xd9a7ff,
+        transparent: true,
+        opacity: 0.35,
+        side: THREE.DoubleSide,
+        depthTest: false,
+        depthWrite: false
+    });
+
+    photoOuterRing = new THREE.Mesh(
+        outerRingGeometry,
+        outerRingMaterial
+    );
+
+    photoOuterRing.position.z = 0.27;
+    photoOuterRing.renderOrder = 100;
+
+    centerPhotoGroup.add(photoOuterRing);
+
+
+    // =========================
+    // 🌟 PARTIKEL ORBIT
+    // =========================
+
+    const particleGeometry =
+        new THREE.SphereGeometry(0.025, 8, 8);
+
+    for (let i = 0; i < 20; i++) {
+
+        const particleMaterial =
+            new THREE.MeshBasicMaterial({
+                color:
+                    i % 3 === 0
+                        ? 0xffffff
+                        : 0xffb8ff,
+                transparent: true,
+                opacity: 0.8,
+                depthTest: false,
+                depthWrite: false
+            });
+
+        const particle = new THREE.Mesh(
+            particleGeometry,
+            particleMaterial
+        );
+
+        particle.userData.angle =
+            (Math.PI * 2 / 20) * i;
+
+        particle.userData.radius =
+            2.28 + Math.random() * 0.22;
+
+        particle.userData.speed =
+            0.18 + Math.random() * 0.3;
+
+        particle.userData.offset =
+            Math.random() * Math.PI * 2;
+
+        particle.renderOrder = 102;
+
+        centerPhotoGroup.add(particle);
+
+        photoParticles.push(particle);
+    }
+
+
+    // =========================
+    // 📸 FOTO DEPAN
+    // =========================
 
     loader.load(
         frontPath,
@@ -1210,20 +1248,15 @@ for (let i = 0; i < 18; i++) {
             const geometry =
                 new THREE.CircleGeometry(
                     2.05,
-                    96
+                    128
                 );
 
             const material =
                 new THREE.MeshBasicMaterial({
                     map: texture,
-
                     transparent: true,
-
-                    side:
-                        THREE.DoubleSide,
-
+                    side: THREE.DoubleSide,
                     depthTest: false,
-
                     depthWrite: false
                 });
 
@@ -1233,25 +1266,27 @@ for (let i = 0; i < 18; i++) {
                     material
                 );
 
-            photoFront.position.z =
-                0.2;
+            photoFront.position.z = 0.2;
 
-            photoFront.renderOrder =
-                100;
+            photoFront.renderOrder = 110;
 
-            photoFront.userData
-                .isCenterPhoto = true;
+            photoFront.userData.isCenterPhoto = true;
 
-            centerPhotoGroup.add(
-                photoFront
+            centerPhotoGroup.add(photoFront);
+        },
+        undefined,
+        (error) => {
+            console.error(
+                "Gagal memuat imutku.jpg",
+                error
             );
         }
     );
 
 
-    /* =========================
-       BACK PHOTO
-    ========================= */
+    // =========================
+    // 📸 FOTO BELAKANG
+    // =========================
 
     loader.load(
         backPath,
@@ -1263,20 +1298,15 @@ for (let i = 0; i < 18; i++) {
             const geometry =
                 new THREE.CircleGeometry(
                     2.05,
-                    96
+                    128
                 );
 
             const material =
                 new THREE.MeshBasicMaterial({
                     map: texture,
-
                     transparent: true,
-
-                    side:
-                        THREE.DoubleSide,
-
+                    side: THREE.DoubleSide,
                     depthTest: false,
-
                     depthWrite: false
                 });
 
@@ -1286,20 +1316,22 @@ for (let i = 0; i < 18; i++) {
                     material
                 );
 
-            photoBack.position.z =
-                -0.2;
+            photoBack.position.z = -0.2;
 
             photoBack.rotation.y =
                 Math.PI;
 
-            photoBack.renderOrder =
-                99;
+            photoBack.renderOrder = 109;
 
-            photoBack.userData
-                .isCenterPhoto = true;
+            photoBack.userData.isCenterPhoto = true;
 
-            centerPhotoGroup.add(
-                photoBack
+            centerPhotoGroup.add(photoBack);
+        },
+        undefined,
+        (error) => {
+            console.error(
+                "Gagal memuat imutku-belakang.jpg",
+                error
             );
         }
     );
@@ -1332,10 +1364,13 @@ function animateCenterPhoto() {
 
     if (!centerPhotoGroup) return;
 
+    const time =
+        performance.now() * 0.001;
 
-    /* =========================
-       SMOOTH 180° FLIP
-    ========================= */
+
+    // =========================
+    // 🔄 FLIP 180°
+    // =========================
 
     currentPhotoRotation =
         THREE.MathUtils.lerp(
@@ -1348,23 +1383,96 @@ function animateCenterPhoto() {
         currentPhotoRotation;
 
 
-    /* =========================
-       FLOATING HALUS
-    ========================= */
-
-    const time =
-        performance.now() *
-        0.001;
+    // =========================
+    // 💫 FLOATING
+    // =========================
 
     centerPhotoGroup.position.y =
-        Math.sin(
-            time * 1.2
-        ) * 0.08;
+        Math.sin(time * 1.15) * 0.07;
 
     centerPhotoGroup.position.x =
-        Math.cos(
-            time * 0.8
-        ) * 0.04;
+        Math.cos(time * 0.8) * 0.035;
+
+
+    // =========================
+    // ✨ RING BERPUTAR
+    // =========================
+
+    if (photoRing) {
+
+        photoRing.rotation.z =
+            time * 0.18;
+
+        const pulse =
+            1 +
+            Math.sin(time * 2.2) * 0.018;
+
+        photoRing.scale.set(
+            pulse,
+            pulse,
+            pulse
+        );
+
+        photoRing.material.opacity =
+            0.62 +
+            Math.sin(time * 2.5) * 0.12;
+    }
+
+
+    // =========================
+    // 💜 RING LUAR
+    // =========================
+
+    if (photoOuterRing) {
+
+        photoOuterRing.rotation.z =
+            -time * 0.12;
+
+        photoOuterRing.material.opacity =
+            0.25 +
+            Math.sin(time * 1.5) * 0.12;
+    }
+
+
+    // =========================
+    // 🌟 ORBIT PARTICLES
+    // =========================
+
+    photoParticles.forEach(
+        (particle) => {
+
+            const angle =
+                particle.userData.angle +
+                time *
+                particle.userData.speed;
+
+            const radius =
+                particle.userData.radius +
+                Math.sin(
+                    time * 1.4 +
+                    particle.userData.offset
+                ) * 0.06;
+
+            particle.position.x =
+                Math.cos(angle) * radius;
+
+            particle.position.y =
+                Math.sin(angle) * radius;
+
+            particle.position.z =
+                Math.sin(
+                    time * 1.2 +
+                    particle.userData.offset
+                ) * 0.12;
+
+            particle.material.opacity =
+                0.45 +
+                Math.sin(
+                    time * 3 +
+                    particle.userData.offset
+                ) * 0.35;
+        }
+    );
 }
 
 
@@ -1662,86 +1770,167 @@ function closeLoveMessage() {
    TOUCH START
 ========================================================= */
 
-function galaxyTouchStart(event) {
+let touchStartX = 0;
+let touchStartY = 0;
 
-    if (!event.touches.length) return;
+let lastTouchX = 0;
+let lastTouchY = 0;
 
-    event.preventDefault();
+let lastPinchDistance = 0;
 
-    const touch =
-        event.touches[0];
-
-    galaxyDragging = true;
-
-    galaxyMoved = false;
-
-    galaxyPreviousPointer.x =
-        touch.clientX;
-
-    galaxyPreviousPointer.y =
-        touch.clientY;
-}
+let isTouching = false;
 
 
-/* =========================================================
-   TOUCH MOVE
-========================================================= */
+// =========================
+// 📱 TOUCH START
+// =========================
 
-function galaxyTouchMove(event) {
+function galaxyTouchStart(e) {
 
-    if (!galaxyDragging) return;
+    e.preventDefault();
 
-    if (!event.touches.length) return;
+    isTouching = true;
 
-    event.preventDefault();
+    // 🤏 Dua jari = mulai pinch zoom
+    if (e.touches.length === 2) {
 
-    const touch =
-        event.touches[0];
+        lastPinchDistance =
+            getPinchDistance(e.touches);
 
-    const deltaX =
-        touch.clientX -
-        galaxyPreviousPointer.x;
-
-    const deltaY =
-        touch.clientY -
-        galaxyPreviousPointer.y;
-
-    if (
-        Math.abs(deltaX) > 2 ||
-        Math.abs(deltaY) > 2
-    ) {
-
-        galaxyMoved = true;
+        return;
     }
 
-    galaxyPreviousPointer.x =
-        touch.clientX;
+    // 👆 Satu jari = rotate galaxy
+    if (e.touches.length === 1) {
 
-    galaxyPreviousPointer.y =
-        touch.clientY;
+        touchStartX =
+            e.touches[0].clientX;
 
-    galaxyTargetRotation.y +=
-        deltaX * 0.004;
+        touchStartY =
+            e.touches[0].clientY;
 
-    galaxyTargetRotation.x +=
-        deltaY * 0.003;
+        lastTouchX =
+            touchStartX;
 
-    galaxyTargetRotation.x =
-        THREE.MathUtils.clamp(
-            galaxyTargetRotation.x,
-            -1.3,
-            1.3
-        );
+        lastTouchY =
+            touchStartY;
+    }
 }
 
 
-/* =========================================================
-   TOUCH END
-========================================================= */
+// =========================
+// 📱 TOUCH MOVE
+// =========================
 
-function galaxyTouchEnd() {
+function galaxyTouchMove(e) {
 
-    galaxyDragging = false;
+    e.preventDefault();
+
+    // =========================
+    // 🤏 PINCH ZOOM
+    // =========================
+
+    if (e.touches.length === 2) {
+
+        const currentDistance =
+            getPinchDistance(e);
+
+        if (lastPinchDistance > 0) {
+
+            const difference =
+                currentDistance -
+                lastPinchDistance;
+
+            // Jari menjauh = zoom in
+            // Jari mendekat = zoom out
+            camera.position.z -=
+                difference * 0.025;
+
+            // Batas zoom
+            camera.position.z =
+                THREE.MathUtils.clamp(
+                    camera.position.z,
+                    5,
+                    80
+                );
+        }
+
+        lastPinchDistance =
+            currentDistance;
+
+        return;
+    }
+
+
+    // =========================
+    // 👆 ROTATE GALAXY
+    // =========================
+
+    if (
+        e.touches.length === 1 &&
+        isTouching
+    ) {
+
+        const currentX =
+            e.touches[0].clientX;
+
+        const currentY =
+            e.touches[0].clientY;
+
+        const deltaX =
+            currentX - lastTouchX;
+
+        const deltaY =
+            currentY - lastTouchY;
+
+        galaxyGroup.rotation.y +=
+            deltaX * 0.005;
+
+        galaxyGroup.rotation.x +=
+            deltaY * 0.005;
+
+        lastTouchX = currentX;
+        lastTouchY = currentY;
+    }
+}
+
+
+// =========================
+// 📱 TOUCH END
+// =========================
+
+function galaxyTouchEnd(e) {
+
+    e.preventDefault();
+
+    if (e.touches.length < 2) {
+        lastPinchDistance = 0;
+    }
+
+    if (e.touches.length === 0) {
+        isTouching = false;
+    }
+}
+
+
+// =========================
+// 📏 HITUNG JARAK 2 JARI
+// =========================
+
+function getPinchDistance(e) {
+
+    const dx =
+        e.touches[0].clientX -
+        e.touches[1].clientX;
+
+    const dy =
+        e.touches[0].clientY -
+        e.touches[1].clientY;
+
+    return Math.sqrt(
+        dx * dx +
+        dy * dy
+    );
 }
 
 
